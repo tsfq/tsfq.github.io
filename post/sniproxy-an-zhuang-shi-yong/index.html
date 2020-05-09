@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>sniproxy安装使用 | 随笔</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1589038053110">
+<link rel="stylesheet" href="https://blog.xuejian.site/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="1、购买Ubuntu服务器，要求Ubuntu 16.04及以上，待服务器开启后，执行以下命令关闭服务器防火墙和临时关闭selinux
+ufw disable
+setenforce 0
+
+2、执行以下操作，彻底关闭selinux，防止重启后s..." />
+    <meta name="keywords" content="技术" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.xuejian.site">
+        <img src="https://blog.xuejian.site/images/avatar.png?v=1589038053110" class="site-logo">
+        <h1 class="site-title">随笔</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      记录一下
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">sniproxy安装使用</h2>
+            <div class="post-date">2019-06-18</div>
+            
+              <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20200509232704.png')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p><font size=3>1、购买Ubuntu服务器，要求Ubuntu 16.04及以上，待服务器开启后，执行以下命令关闭服务器防火墙和临时关闭selinux</p>
+<pre><code class="language-shell">ufw disable
+setenforce 0
+</code></pre>
+<p><font size=3>2、执行以下操作，彻底关闭selinux，防止重启后selinux再次启动</p>
+<pre><code class="language-shell">修改/etc/selinux/config 文件
+将SELINUX=enforcing改为SELINUX=disabled
+</code></pre>
+<p><font size=3>3、安装依赖</p>
+<pre><code class="language-shell">sudo apt-get install autotools-dev cdbs debhelper dh-autoreconf dpkg-dev gettext libev-dev libpcre3-dev libudns-dev pkg-config fakeroot devscripts
+</code></pre>
+<p><font size=3>4、安装git软件</p>
+<pre><code class="language-shell">sudo apt-get install git
+</code></pre>
+<p><font size=3>5、从github上获取sniproxy</p>
+<pre><code class="language-shell">git clone https://github.com/dlundquist/sniproxy.git
+</code></pre>
+<p><font size=3>6、先进入sniproxy，然后执行第二步</p>
+<pre><code class="language-shell">cd sniproxy
+./autogen.sh &amp;&amp; ./configure &amp;&amp; make check &amp;&amp; sudo make install
+</code></pre>
+<p><font size=3>备份/etc/sniproxy.conf，然后vi /etc/sniproxy.conf，输入以下内容</p>
+<pre><code class="language-shell">user nobody
+resolver {
+mode ipv4_only}  //如果服务器只有ipv4地址一定要这个选项，不然会概率性SSL错误或503
+listen 80 {
+proto http
+table http_hosts
+}
+table http_hosts {
+.* *:80
+}
+listen 0.0.0.0:443 {
+proto tls
+table https_hosts
+}
+table https_hosts {
+.* *:443
+}
+</code></pre>
+<p><font size=3>6、用以下命令启动sniproxy</p>
+<pre><code class="language-shell">sniproxy -c /etc/sniproxy.conf
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="tag">
+                    技术
+                  </a>
+                
+              </div>
+            
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
+  </body>
+</html>

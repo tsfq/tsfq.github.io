@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xuejian.site</id>
     <title>随笔</title>
-    <updated>2020-05-09T11:04:47.273Z</updated>
+    <updated>2020-05-09T15:27:49.743Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xuejian.site"/>
     <link rel="self" href="https://blog.xuejian.site/atom.xml"/>
@@ -421,6 +421,57 @@ vi picture.conf
 <figure data-type="image" tabindex="13"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531172659.png" alt="" loading="lazy"></figure>
 <p><font size=3>3、完成后，可以在上传区上传图片试试，默认链接为markdown链接，可以工具自己的需求进行更改。</p>
 <figure data-type="image" tabindex="14"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531172730.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sniproxy安装使用]]></title>
+        <id>https://blog.xuejian.site/post/sniproxy-an-zhuang-shi-yong/</id>
+        <link href="https://blog.xuejian.site/post/sniproxy-an-zhuang-shi-yong/">
+        </link>
+        <updated>2019-06-18T15:15:46.000Z</updated>
+        <content type="html"><![CDATA[<p><font size=3>1、购买Ubuntu服务器，要求Ubuntu 16.04及以上，待服务器开启后，执行以下命令关闭服务器防火墙和临时关闭selinux</p>
+<pre><code class="language-shell">ufw disable
+setenforce 0
+</code></pre>
+<p><font size=3>2、执行以下操作，彻底关闭selinux，防止重启后selinux再次启动</p>
+<pre><code class="language-shell">修改/etc/selinux/config 文件
+将SELINUX=enforcing改为SELINUX=disabled
+</code></pre>
+<p><font size=3>3、安装依赖</p>
+<pre><code class="language-shell">sudo apt-get install autotools-dev cdbs debhelper dh-autoreconf dpkg-dev gettext libev-dev libpcre3-dev libudns-dev pkg-config fakeroot devscripts
+</code></pre>
+<p><font size=3>4、安装git软件</p>
+<pre><code class="language-shell">sudo apt-get install git
+</code></pre>
+<p><font size=3>5、从github上获取sniproxy</p>
+<pre><code class="language-shell">git clone https://github.com/dlundquist/sniproxy.git
+</code></pre>
+<p><font size=3>6、先进入sniproxy，然后执行第二步</p>
+<pre><code class="language-shell">cd sniproxy
+./autogen.sh &amp;&amp; ./configure &amp;&amp; make check &amp;&amp; sudo make install
+</code></pre>
+<p><font size=3>备份/etc/sniproxy.conf，然后vi /etc/sniproxy.conf，输入以下内容</p>
+<pre><code class="language-shell">user nobody
+resolver {
+mode ipv4_only}  //如果服务器只有ipv4地址一定要这个选项，不然会概率性SSL错误或503
+listen 80 {
+proto http
+table http_hosts
+}
+table http_hosts {
+.* *:80
+}
+listen 0.0.0.0:443 {
+proto tls
+table https_hosts
+}
+table https_hosts {
+.* *:443
+}
+</code></pre>
+<p><font size=3>6、用以下命令启动sniproxy</p>
+<pre><code class="language-shell">sniproxy -c /etc/sniproxy.conf
+</code></pre>
 ]]></content>
     </entry>
 </feed>
