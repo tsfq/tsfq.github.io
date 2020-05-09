@@ -1,22 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.xuejian.site</id>
-    <title>Gridea</title>
-    <updated>2020-05-09T09:13:05.233Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://blog.xuejian.site"/>
-    <link rel="self" href="https://blog.xuejian.site/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
-    <logo>https://blog.xuejian.site/images/avatar.png</logo>
-    <icon>https://blog.xuejian.site/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
-    <entry>
-        <title type="html"><![CDATA[自建低成本大流量图床]]></title>
-        <id>https://blog.xuejian.site/post/zi-jian-di-cheng-ben-da-liu-liang-tu-chuang/</id>
-        <link href="https://blog.xuejian.site/post/zi-jian-di-cheng-ben-da-liu-liang-tu-chuang/">
-        </link>
-        <updated>2019-06-19T08:49:47.000Z</updated>
-        <content type="html"><![CDATA[<p><font size=4>一、建立阿里云香港区OSS Bucket</p>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>自建低成本大流量图床 | Gridea</title>
+<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1589015577823">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.xuejian.site/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="自建低成本大流量图床 | Gridea - Atom Feed" href="https://blog.xuejian.site/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="一、建立阿里云香港区OSS Bucket
+1、建立阿里云香港区的OSS Bucket，注意点是红框标注的两处，区域选择香港，读写权限选择公共读；
+
+2、记录红框标注的地址，后续备用；
+
+二、购买阿里云香港区域轻量服务器并安装nginx
+1、..." />
+    <meta name="keywords" content="技术" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.xuejian.site">
+  <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1589015577823" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              自建低成本大流量图床
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-06-19
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+                  # 技术
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531172730.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><font size=4>一、建立阿里云香港区OSS Bucket</p>
 <p><font size=3>1、建立阿里云香港区的OSS Bucket，注意点是红框标注的两处，区域选择香港，读写权限选择公共读；</p>
 <figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531155034.png" alt="" loading="lazy"></figure>
 <p><font size=3>2、记录红框标注的地址，后续备用；</p>
@@ -91,6 +163,68 @@ vi picture.conf
 <figure data-type="image" tabindex="13"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531172659.png" alt="" loading="lazy"></figure>
 <p><font size=3>3、完成后，可以在上传区上传图片试试，默认链接为markdown链接，可以工具自己的需求进行更改。</p>
 <figure data-type="image" tabindex="14"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531172730.png" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-</feed>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
