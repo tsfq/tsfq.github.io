@@ -1,13 +1,20 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>自建低成本大流量图床 | 随笔</title>
-<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1589022056979">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1589022258533">
 <link rel="stylesheet" href="https://blog.xuejian.site/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="自建低成本大流量图床 | 随笔 - Atom Feed" href="https://blog.xuejian.site/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
 
@@ -19,76 +26,72 @@
 二、购买阿里云香港区域轻量服务器并安装nginx
 1、..." />
     <meta name="keywords" content="技术" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://blog.xuejian.site">
-  <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1589022056979" alt="">
-  </a>
-  <h1 class="site-title">
-    随笔
-  </h1>
-  <p class="site-description">
-    记录一下
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.xuejian.site">
+        <img src="https://blog.xuejian.site/images/avatar.png?v=1589022258533" class="site-logo">
+        <h1 class="site-title">随笔</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      记录一下
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              自建低成本大流量图床
-            </h2>
-            <div class="post-info">
-              <span>
-                2019-06-19
-              </span>
-              <span>
-                4 min read
-              </span>
-              
-                <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
-                  # 技术
-                </a>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">自建低成本大流量图床</h2>
+            <div class="post-date">2019-06-19</div>
             
-              <img class="post-feature-image" src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531172730.png" alt="">
+              <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/05/20190531172730.png')">
+              </div>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <p><font size=4>一、建立阿里云香港区OSS Bucket</p>
+            <div class="post-content" v-pre>
+              <p><font size=4>一、建立阿里云香港区OSS Bucket</p>
 <p><font size=3>1、建立阿里云香港区的OSS Bucket，注意点是红框标注的两处，区域选择香港，读写权限选择公共读；</p>
 <figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531155034.png" alt="" loading="lazy"></figure>
 <p><font size=3>2、记录红框标注的地址，后续备用；</p>
@@ -164,67 +167,44 @@ vi picture.conf
 <p><font size=3>3、完成后，可以在上传区上传图片试试，默认链接为markdown链接，可以工具自己的需求进行更改。</p>
 <figure data-type="image" tabindex="14"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531172730.png" alt="" loading="lazy"></figure>
 
-              </div>
-              <div class="toc-container">
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="tag">
+                    技术
+                  </a>
                 
               </div>
-            </div>
-          </article>
+            
+            
+
+            
+
+          </div>
+
         </div>
-
-        
-
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
       </div>
     </div>
 
-    <script>
-      hljs.initHighlightingOnLoad()
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+AOS.init();
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
+</script>
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
 
-    </script>
+
+
+
+
   </body>
 </html>
