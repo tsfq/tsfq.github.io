@@ -1,91 +1,93 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>移动副卡实现单卡iphone双卡双待 | 随笔</title>
+<meta name="description" content="记录一下">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1589043229769">
+<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1589043428993">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://blog.xuejian.site/styles/main.css">
 
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
 
-    <meta name="description" content="国行新出的iPhone XR和iPhone XS MAX的双卡功能的确让众多单卡iPhone用户羡慕，毕竟在中国，由于各种原因，很多人都有两张或以上的号卡。其实，如果其中一张为移动卡，则可以借助中国移动集团下各专业公司的APP，间接实现单卡..." />
-    <meta name="keywords" content="技术" />
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://blog.xuejian.site">
-        <img src="https://blog.xuejian.site/images/avatar.png?v=1589043229769" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://blog.xuejian.site">
+        <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1589043428993" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://blog.xuejian.site">
         <h1 class="site-title">随笔</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      记录一下
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">移动副卡实现单卡iphone双卡双待</h2>
-            <div class="post-date">2019-06-19</div>
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20200509180551.png')">
+            </div>
+          
+          <h2 class="post-title">移动副卡实现单卡iphone双卡双待</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-06-19</span>
             
-              <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20200509180551.png')">
-              </div>
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
+                    技术
+                    
+                  </a>
+                
+              </span>
             
-            <div class="post-content" v-pre>
-              <p><font size=3>国行新出的iPhone XR和iPhone XS MAX的双卡功能的确让众多单卡iPhone用户羡慕，毕竟在中国，由于各种原因，很多人都有两张或以上的号卡。其实，如果其中一张为移动卡，则可以借助中国移动集团下各专业公司的APP，间接实现单卡iPhone的双卡双待，或者是国行iPhone XR和iPhone XS MAX的三卡三待。</p>
+          </div>
+          <div class="post-content">
+            <p><font size=3>国行新出的iPhone XR和iPhone XS MAX的双卡功能的确让众多单卡iPhone用户羡慕，毕竟在中国，由于各种原因，很多人都有两张或以上的号卡。其实，如果其中一张为移动卡，则可以借助中国移动集团下各专业公司的APP，间接实现单卡iPhone的双卡双待，或者是国行iPhone XR和iPhone XS MAX的三卡三待。</p>
 <p><font size=4>一、app store下载相关app及准备对应的微信小程序</p>
 <p><font size=3>1、无忧行。无忧行是中国移动为出境游用户推出的出境游通讯服务门户APP，这里我们主要利用其可以免费转接移动卡的电话和短信。该软件如果通过蒲公英下载企业版，可以提供电话界面直接接听的功能，无需像微信一样弹出对话框后点入接听，企业版二维码如下，或者点击链接：<a href="http://www.pgyer.com/K5qj" title="无忧行企业版">无忧行企业版</a>。</p>
 <figure data-type="image" tabindex="1"><img src="https://www.pgyer.com/app/qrcode/K5qj" alt="" loading="lazy"></figure>
@@ -98,39 +100,45 @@
 <p><font size=3>双卡双待是否可以实现，核心在无忧行的设置，具体设置方法如下图：</p>
 <figure data-type="image" tabindex="2"><img src="https://wz-1255445901.file.myqcloud.com/picture/1902/67e988755a50182e.jpg" alt="" loading="lazy"></figure>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="tag">
-                    技术
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://blog.xuejian.site/post/zi-jian-di-cheng-ben-da-liu-liang-tu-chuang/">
-                  <h3 class="post-title">
-                    自建低成本大流量图床
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
           </div>
-
         </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://blog.xuejian.site/post/zi-jian-di-cheng-ben-da-liu-liang-tu-chuang/">
+              <h3 class="post-title">
+                下一篇：自建低成本大流量图床
+              </h3>
+            </a>
+          </div>
+          
       </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">记录一下</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">RSS</a>
+</div>
+
+
     </div>
+    <script type="application/javascript">
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script type="application/javascript">
-
-AOS.init();
+hljs.initHighlightingOnLoad()
 
 var app = new Vue({
   el: '#app',
@@ -140,8 +148,6 @@ var app = new Vue({
 })
 
 </script>
-
-
 
 
 
