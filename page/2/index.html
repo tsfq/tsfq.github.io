@@ -1,11 +1,10 @@
 
-<!DOCTYPE html>
 <html>
   <head>
     
 <meta charset="utf-8" >
 
-<title>sniproxy安装使用 | 随笔</title>
+<title>随笔</title>
 <meta name="description" content="记录一下">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -66,78 +65,49 @@
 
 
       <div class="content-container">
-        <div class="post-detail">
-          
-            <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/20190619114249.png')">
-            </div>
-          
-          <h2 class="post-title">sniproxy安装使用</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-06-18</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                    技术
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <p><font size=3>1、购买Ubuntu服务器，要求Ubuntu 16.04及以上，待服务器开启后，执行以下命令关闭服务器防火墙和临时关闭selinux</p>
-<pre><code class="language-shell">ufw disable
-setenforce 0
-</code></pre>
-<p><font size=3>2、执行以下操作，彻底关闭selinux，防止重启后selinux再次启动</p>
-<pre><code class="language-shell">修改/etc/selinux/config 文件
-将SELINUX=enforcing改为SELINUX=disabled
-</code></pre>
-<p><font size=3>3、安装依赖</p>
-<pre><code class="language-shell">sudo apt-get install autotools-dev cdbs debhelper dh-autoreconf dpkg-dev gettext libev-dev libpcre3-dev libudns-dev pkg-config fakeroot devscripts
-</code></pre>
-<p><font size=3>4、安装git软件</p>
-<pre><code class="language-shell">sudo apt-get install git
-</code></pre>
-<p><font size=3>5、从github上获取sniproxy</p>
-<pre><code class="language-shell">git clone https://github.com/dlundquist/sniproxy.git
-</code></pre>
-<p><font size=3>6、先进入sniproxy，然后执行第二步</p>
-<pre><code class="language-shell">cd sniproxy
-./autogen.sh &amp;&amp; ./configure &amp;&amp; make check &amp;&amp; sudo make install
-</code></pre>
-<p><font size=3>备份/etc/sniproxy.conf，然后vi /etc/sniproxy.conf，输入以下内容</p>
-<pre><code class="language-shell">user nobody
-resolver {
-mode ipv4_only}  //如果服务器只有ipv4地址一定要这个选项，不然会概率性SSL错误或503
-listen 80 {
-proto http
-table http_hosts
-}
-table http_hosts {
-.* *:80
-}
-listen 0.0.0.0:443 {
-proto tls
-table https_hosts
-}
-table https_hosts {
-.* *:443
-}
-</code></pre>
-<p><font size=3>6、用以下命令启动sniproxy</p>
-<pre><code class="language-shell">sniproxy -c /etc/sniproxy.conf
-</code></pre>
-
-          </div>
-        </div>
-
+        
+        
+<section class="post-item">
+    <div class="content">
+      <a href="https://blog.xuejian.site/post/sniproxy-an-zhuang-shi-yong/">
+        <h2 class="post-title">sniproxy安装使用</h2>
+      </a>
+      <div class="post-abstract">
         
       </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-06-18</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
+                技术
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://blog.xuejian.site/post/sniproxy-an-zhuang-shi-yong/">
+        <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/20190619114249.png')">
+        </div>
+      </a>
+    
+  </section>
 
-      
+
+<div class="pagination-container">
+  
+    <a href="https://blog.xuejian.site/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
+  
+  
+</div>
+
+
+      </div>
 
       <div class="site-footer">
   <div class="slogan">记录一下</div>

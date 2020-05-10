@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>加速国内访问海外自有站点与服务 | 随笔</title>
+<meta name="description" content="记录一下">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1589084637076">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://blog.xuejian.site/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://blog.xuejian.site">
+        <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1589084637076" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://blog.xuejian.site">
+        <h1 class="site-title">随笔</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2019/09/20190927104011.png')">
+            </div>
+          
+          <h2 class="post-title">加速国内访问海外自有站点与服务</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-09-27</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
+                    技术
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p><strong><font size=4>一、利用全站加速没有非标端口的站点</strong></p>
+<p><font size=3>1、以阿里云为例，打开全站加速界面，选择“添加域名”；</p>
+<p><font size=3>2、在添加过程中，注意图示的加速区域，如果加速域名为国内已经备案的域名，可以选择任意三种，如果域名为没有备案的域名，只能选择“港澳台及海外”，需要明确的是，各家云服务商的港澳台及海外加速节点，如果大陆地区访问，一般效果不会很好，如果域名没有备案不建议通过这种方式加速；</p>
+<figure data-type="image" tabindex="1"><img src="https://s3.xuejian.site/2019/09/20190927082820.png" alt="" loading="lazy"></figure>
+<p><font size=3>3、待添加完成后，点击右边红框标注的“配置”</p>
+<figure data-type="image" tabindex="2"><img src="https://s3.xuejian.site/2019/09/20190927083246.png" alt="" loading="lazy"></figure>
+<p><font size=3>4、按照图示点击缓存配置-修改，将缓存时间全部调整为0，调整后的结果如圆框所示，这样做的目的在于这个全站加速是为了国内人员访问加速，同时保证静态资源更新后可以第一时间看到更新效果；</p>
+<figure data-type="image" tabindex="3"><img src="https://s3.xuejian.site/2019/09/20190927083537.png" alt="" loading="lazy"></figure>
+<p><font size=3>5、（可选）如果站点为外部访问站点，完成以上操作后，需要进入红框标注的“HTTPS配置”打开HTTPS；</p>
+<figure data-type="image" tabindex="4"><img src="https://s3.xuejian.site/2019/09/20190927084322.png" alt="" loading="lazy"></figure>
+<p><strong><font size=4>二、使用nginx加速非标端口的站点</strong></p>
+<p><font size=3>背景：由于业务需求，我们会设置非标端口的同域名站点来进行上线前的预发布测试，由于CDN及全站加速无法使用非标端口，因此只能使用nginx来进行。nginx部署在香港节点，如果公司出口为电信网络，不要选择阿里云香港轻量服务器，因为大陆地区电信线路至该类型服务器会绕行日本NTT，大陆电信访问延时会在70ms至150ms波动；</p>
+<p><font size=3>1、加速我们在服务器上的站点，默认证书存储路径为/etc/nginx/ssl，正式的端口为80与443，预发端口为3505与3506（https）：</p>
+<pre><code class="language-shell">server
+ {
+ resolver 8.8.8.8; //因为proxy_pass后面是域名，因此配置dns解析让其遵循解析的TTL
+ listen 80;
+ listen 443 ssl;
+ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ ssl_certificate /etc/nginx/ssl/_.xxx.crt;
+ ssl_certificate_key /etc/nginx/ssl/_.xxx.key;
+ server_name xxx.xxx.com;
+ location / {
+ client_max_body_size 10m;
+ proxy_set_header Host $host;
+ proxy_set_header X-Real-IP $remote_addr;
+ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+ proxy_pass http://xxx.ap-south-1.elb.amazonaws.com;
+ }
+ #access_log logs/xxx.log;
+ access_log /dev/null;
+}
+
+server
+ {
+ resolver 8.8.8.8;
+ listen 3505;
+ listen 3506 ssl;
+ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ ssl_certificate /etc/nginx/ssl/_.xxx.crt;
+ ssl_certificate_key /etc/nginx/ssl/_.xxx.key;
+ server_name xxx.xxx.com;
+ location / {
+ proxy_set_header Host $host;
+ proxy_set_header X-Real-IP $remote_addr;
+ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+ proxy_pass http://xxx.ap-south-1.elb.amazonaws.com:3505;
+} 
+}
+</code></pre>
+<p><font size=3>2、如果需要nginx代理部署在AWS S3上的资源，可以用以下配置来进行：</p>
+<pre><code class="language-shell">server
+ {
+ listen 80;
+ listen 443 ssl;
+ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ ssl_certificate /etc/nginx/ssl/xxx.crt;
+ ssl_certificate_key /etc/nginx/ssl/xxx.key;
+ server_name www.xxx.com;
+ location / {
+	 client_max_body_size 10m;
+ set $s3_bucket 's3name';
+ add_header x-by &quot;aws&quot;;
+
+ proxy_http_version 1.1;
+ proxy_set_header Host $s3_bucket;
+ proxy_set_header Authorization '';
+ proxy_hide_header x-amz-id-2;
+ proxy_hide_header x-amz-request-id;
+ proxy_hide_header Set-Cookie;
+ proxy_ignore_headers &quot;Set-Cookie&quot;;
+ add_header X-Cached $upstream_cache_status;
+ proxy_pass http://s3name.s3.amazonaws.com/release;
+ }
+ #access_log logs/xxx.log;
+ access_log /dev/null;
+}
+
+
+server
+ {
+ listen 3505;
+ listen 3506 ssl;
+ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ ssl_certificate /etc/nginx/ssl/xxx.crt;
+ ssl_certificate_key /etc/nginx/ssl/xxx.key;
+ server_name xxx.xxx.com;
+ location / {
+	 client_max_body_size 10m;
+ set $s3_bucket 's3name';
+ add_header x-by &quot;aws&quot;;
+
+ proxy_http_version 1.1;
+ proxy_set_header Host $s3_bucket;
+ proxy_set_header Authorization '';
+ proxy_hide_header x-amz-id-2;
+ proxy_hide_header x-amz-request-id;
+ proxy_hide_header Set-Cookie;
+ proxy_ignore_headers &quot;Set-Cookie&quot;;
+ add_header X-Cached $upstream_cache_status;
+ proxy_pass http://s3name.s3.amazonaws.com/yf;
+ }
+ #access_log logs/xxx.log;
+ access_log /dev/null;
+}
+</code></pre>
+<p><font size=3>3、如果相关资源部署在阿里云OSS，做法相对简单，配置如下：</p>
+<pre><code class="language-shell">server
+ {
+ listen 3505;
+ listen 3506 ssl;
+ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ ssl_certificate /etc/nginx/ssl/xxx.crt;
+ ssl_certificate_key /etc/nginx/ssl/xxx.key;
+ server_name xxx.xxx.com;
+ location / {
+ location / {
+ # proxy_set_header Host $host;
+ # proxy_set_header X-Real-IP $remote_addr;
+ # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; //注释的目的在于防止nginx将主机host携带至OSS，注释后不需要在OSS侧绑定域名
+ proxy_pass https://xxx.oss-cn-hangzhou.aliyuncs.com/yf;
+ }
+}
+server
+ {
+ listen 80;
+	listen 443 ssl;
+	ssl_certificate /etc/nginx/ssl/xxx.crt;
+ ssl_certificate_key /etc/nginx/ssl/xxx.key;
+ server_name xxx.xxx.com;
+ location / {
+ # proxy_set_header Host $host;
+ # proxy_set_header X-Real-IP $remote_addr;
+ # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+ proxy_pass https://xxx.oss-cn-hangzhou.aliyuncs.com/release;
+ }
+}
+</code></pre>
+<p><font size=3>4、haproxy加速TCP业务，部署背景在于我们的游戏服务使用TCP连接，但由于网络原因，国内连接至海外经常断线，造成国内人员测试受阻，可以通过在香港部署haproxy解决，配置如下：</p>
+<pre><code class="language-shell">########test#################
+listen test
+bind 0.0.0.0:3546
+mode tcp
+balance roundrobin
+server s1 1.1.1.1:3456 weight 1 maxconn 10000 check inter 1000s
+</code></pre>
+<p><strong><font size=4>三、在域名解析侧进行分区域解析</strong></p>
+<p><font size=3>1、如果使用AWS route 53进行域名解析，图中1的位置选择“地址位置”，图中2分别设置默认（非中国大陆地区访问的解析结果）、中国（中国地区访问的解析结果），图中3的集合ID分别累加，这样设置完后中国大陆地区与海外地区访问的就不是一样的结果；</p>
+<figure data-type="image" tabindex="5"><img src="https://s3.xuejian.site/2019/09/20190927094631.png" alt="" loading="lazy"></figure>
+<p><font size=3>2、如果使用的是阿里云云解析，解析线路分别设置为默认（中国大陆地区访问的解析结果）、境外（非中国大陆地区访问的解析结果）</p>
+<figure data-type="image" tabindex="6"><img src="https://s3.xuejian.site/2019/09/20190927095252.png" alt="" loading="lazy"></figure>
+<p><font size=3>需要注意的是，如果海外地区有ipv6，则慎重选择阿里云解析，因为阿里云解析NS域名服务器的ipv6地址位于中国四川，递归回国会造成ipv6解析速度严重下降，线路ping结果如下图所示：</p>
+<figure data-type="image" tabindex="7"><img src="https://s3.xuejian.site/2019/09/20190927095731.png" alt="" loading="lazy"></figure>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://blog.xuejian.site/post/wo-zou-guo-de-hang-zhou-jing-qu-er/">
+              <h3 class="post-title">
+                下一篇：我走过的杭州景区（二）
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">记录一下</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
