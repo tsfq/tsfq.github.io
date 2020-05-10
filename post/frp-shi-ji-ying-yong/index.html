@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>frp实际应用 | 随笔</title>
+<meta name="description" content="记录一下">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1589085057827">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://blog.xuejian.site/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://blog.xuejian.site">
+        <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1589085057827" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://blog.xuejian.site">
+        <h1 class="site-title">随笔</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2019/09/20190911100750.png')">
+            </div>
+          
+          <h2 class="post-title">frp实际应用</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-08-25</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
+                    技术
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p><font size=3>由于ipv4资源的日益稀缺，目前很多企业用的宽带也是没有公网IP的，但有时候在非公司网络下需要访问公司内部的OA以及内网电脑或服务器，如果公司规定允许可以采用frp的方式进入；</p>
+<p><strong><font size=4>一、frp服务端部署</strong></p>
+<p><font size=3>1、准备：（1）一台带公网IP的VPS，系统为CentOS 7，如果仅用于frp建议购买阿里元1核0.5G的香港区ECS，防止因为备案等问题造成困扰，没有阿里云账号可以访问以下链接注册并实名：<a href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=yfbux3xo" title="阿里云注册链接">阿里云注册链接</a> ；（2）域名，如果有可以直接使用，如果没有可以在注册完阿里云后进行购买；（3）内网一台24小时开机的设备，可以是服务器或电脑，也可以是能安装frp客户端的树莓派及路由器；</p>
+<p><font size=3>2、本文以阿里云为例，购买ECS后，按图所示步骤，进入阿里云安全组设置；</p>
+<figure data-type="image" tabindex="1"><img src="https://s3.xuejian.site/2019/09/20190911000053.png" alt="" loading="lazy"></figure>
+<p><font size=3>3、点击红框标注的“添加安全组规则”，进入安全组添加；</p>
+<figure data-type="image" tabindex="2"><img src="https://s3.xuejian.site/2019/09/20190911000355.png" alt="" loading="lazy"></figure>
+<p><font size=3>4、添加两次，在图中1的位置分别填入80核20000/30000，在图中2的位置填入0.0.0.0/0；</p>
+<figure data-type="image" tabindex="3"><img src="https://s3.xuejian.site/2019/09/20190911000743.png" alt="" loading="lazy"></figure>
+<p><font size=3>5、下载服务器连接工具putty:<a href="https://mirrors.huaweicloud.com/putty/0.72/w64/putty-64bit-0.72-installer.msi" title="putty下载地址">putty下载地址</a>，下载后直接点击安装；</p>
+<p><font size=3>6、在红框标注的位置填入购买的ECS的公网IP，然后点击open进行连接</p>
+<figure data-type="image" tabindex="4"><img src="https://s3.xuejian.site/2019/09/20190911001215.png" alt="" loading="lazy"></figure>
+<p><font size=3>7、在弹出的对话框中输入root和购买ECS所设置的密码，然后回车确认进入系统。进入系统后，输入以下命令关闭系统防火墙并禁止自动启动：</p>
+<pre><code class="language-shell">systemctl stop firewalld.service
+systemctl disable firewalld.service
+</code></pre>
+<p><font size=3>8、使用以下命令下载frp服务端,解压并进入frp的目录：</p>
+<pre><code class="language-shell">wget https://github.com/fatedier/frp/releases/download/v0.29.0/
+tar -zxvf frp_0.29.0_linux_amd64.tar.gz
+cd frp_0.29.0_linux_amd64
+rm -rf frpc*
+</code></pre>
+<p><font size=3>9、使用vi frps.ini编辑配置文件，删除原来的选项，输入以下内容，其中，token、dashboard_user、dashboard_pwd请更换并记录：</p>
+<pre><code class="language-shell">[common]
+bind_port = 20000
+vhost_http_port = 80
+dashboard_port = 30000
+token = 123456
+# dashboard 用户名密码，默认都为 admin
+dashboard_user = admin
+dashboard_pwd = test
+log_level = info
+log_file=/www/frp/frp.log
+</code></pre>
+<p><font size=3>10、使用以下命令启动frp的服务端：</p>
+<pre><code class="language-shell">nohup ./frps -c frps.ini &gt;/dev/null 2&gt;&amp;1 &amp;
+</code></pre>
+<p><font size=3>11、使用以下命令进行检查，如果出现红框标注的进程，说明启动成功：</p>
+<pre><code class="language-shell">ps -ef |grep frp
+</code></pre>
+<figure data-type="image" tabindex="5"><img src="https://s3.xuejian.site/2019/09/20190911084410.png" alt="" loading="lazy"></figure>
+<p><strong><font size=4>二、开启内网OA等web服务的外网访问</strong></p>
+<p><font size=3>1、以Windows为例，浏览器打开链接下载：<a href="https://github.com/fatedier/frp/releases/download/v0.29.0/frp_0.29.0_windows_amd64.zip" title="Windows版frp下载链接">Windows版frp下载链接</a>，其它系统请前往frp releases页面下载:<a href="https://github.com/fatedier/frp/releases" title="frp releases页面地址">frp releases页面地址</a>；</p>
+<p><font size=3>2、将下载的压缩包解压后进入，并删除frps开头的文件；</p>
+<p><font size=3>3、下载notepad++，安装后用notepad++打开frpc.ini，按以下模版输入，需要注意的是，token为之前设置的值，local_ip为OA所在的IP，custom_domains为需要访问的外网域名地址，填写后记得将该域名解析到该ECS的公网IP：</p>
+<pre><code class="language-bash">[common]
+server_addr = ECS公网IP
+server_port = 20000
+token = 123456
+
+[oa]
+type = http
+local_ip = 192.168.1.6
+local_port = 80
+custom_domains = oa.test.com
+</code></pre>
+<p><font size=3>4、打开cmd，使用以下命令启动frp，黑窗口不要关闭：</p>
+<pre><code class="language-bash">frpc.exe -c frpc.ini
+</code></pre>
+<p><strong><font size=4>三、外网访问内网的电脑或服务器</strong></p>
+<p><font size=3>1、示例中的电脑IP为192.168.2.6，远程端口为3389，实际情况中按照实际情况进行部署，在以上的基础上加上以下内容，remote_port要在之前安全组设置的访问内：</p>
+<pre><code class="language-bash">[pc]
+type = tcp
+local_ip = 192.168.2.6
+local_port = 3389
+remote_port = 21000
+</code></pre>
+<p><font size=3>2、关闭黑窗口然后再打开，输入以下命令，保持黑窗口不关闭：</p>
+<pre><code class="language-bash">frpc.exe -c frpc.ini
+</code></pre>
+<p><strong><font size=4>四、frp代理L2TP等UDP应用</strong></p>
+<p><font size=3>1、由于L2TP情况特殊，需要使用UDP 500，1701，4500三个端口，具体配置如下：</p>
+<pre><code class="language-shell">[isakmp]
+type = udp
+local_ip = 192.168.0.1
+local_port = 500
+remote_port = 500
+use_encryption = true
+use_compression = true
+
+[natt]
+type = udp
+local_ip = 192.168.0.1
+local_port = 4500
+remote_port = 4500
+use_encryption = true
+use_compression = true
+
+[l2tp]
+type = udp
+local_ip = 192.168.0.1
+local_port = 1701
+remote_port = 1701
+use_encryption = true
+use_compression = true
+
+</code></pre>
+<p><strong><font size=4>五、网页查看frp运行情况</strong></p>
+<p><font size=3>1、打开网页端地址：http://ECS公网IP:30000 ，帐号密码填入第一步设置的dashboard_user、dashboard_pwd；</p>
+<p><font size=3>2、登录后，红框1查看远程访问内网电脑或服务器情况，红框2表示外网访问内网OA等内部web服务的情况。</p>
+<figure data-type="image" tabindex="6"><img src="https://s3.xuejian.site/2019/09/20190911100050.png" alt="" loading="lazy"></figure>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://blog.xuejian.site/post/wo-zou-guo-de-hang-zhou-jing-qu-er/">
+              <h3 class="post-title">
+                下一篇：我走过的杭州景区（二）
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">记录一下</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
