@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xuejian.site</id>
     <title>随笔</title>
-    <updated>2020-05-10T04:10:13.036Z</updated>
+    <updated>2020-05-10T04:12:49.974Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xuejian.site"/>
     <link rel="self" href="https://blog.xuejian.site/atom.xml"/>
@@ -129,6 +129,256 @@ chmod a+x certbot-auto
 <figure data-type="image" tabindex="38"><img src="https://wz-1255445901.file.myqcloud.com/picture/1812/624277db018d43b9.jpg" alt="" loading="lazy"></figure>
 <figure data-type="image" tabindex="39"><img src="https://wz-1255445901.file.myqcloud.com/picture/1812/5606855296fd2311.jpg" alt="" loading="lazy"></figure>
 <figure data-type="image" tabindex="40"><img src="https://wz-1255445901.file.myqcloud.com/picture/1812/533ba9438b5d09ef.jpg" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[nginx服务小结]]></title>
+        <id>https://blog.xuejian.site/post/nginx-fu-wu-xiao-jie/</id>
+        <link href="https://blog.xuejian.site/post/nginx-fu-wu-xiao-jie/">
+        </link>
+        <updated>2019-08-19T04:10:59.000Z</updated>
+        <content type="html"><![CDATA[<p><font size=3>1、nginx代理谷歌、维基等，这部分以谷歌为例，需要准备一个可以解析的域名以及该域名的https证书，配置如下：</p>
+<pre><code class="language-shell">server
+ {
+ #监听端口可以改
+ listen 80;
+ listen 443 ssl;
+ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ #填上证书的名字和路径
+ ssl_certificate /etc/nginx/ssl/xxx.crt;
+ ssl_certificate_key /etc/nginx/ssl/xxx.key;
+ #填上你的域名
+    server_name xxx.xxx.com;
+    location / {
+      client_max_body_size 100m;
+       proxy_set_header  Host  &quot;www.google.com&quot;;
+       proxy_set_header  User-Agent $http_user_agent;
+       proxy_set_header  Connection &quot;&quot;;
+       proxy_http_version 1.1;
+       proxy_pass https://www.google.com;
+    }
+    #access_log logs/xxx.log;
+    access_log /dev/null;
+}
+</code></pre>
+<p><font size=3>2、nginx代理S3</p>
+<pre><code class="language-shell">server
+ {
+ listen 80;
+ listen 443 ssl;
+ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ ssl_certificate /etc/nginx/ssl/xxx.crt;
+ ssl_certificate_key /etc/nginx/ssl/xxx.key;
+    server_name www.xxx.com;
+    location / {
+	   client_max_body_size 10m;
+                set $s3_bucket        's3name';
+                add_header x-by &quot;aws&quot;;
+
+                proxy_http_version     1.1;
+                proxy_set_header       Host $s3_bucket;
+                proxy_set_header       Authorization '';
+                proxy_hide_header      x-amz-id-2;
+                proxy_hide_header      x-amz-request-id;
+                proxy_hide_header      Set-Cookie;
+                proxy_ignore_headers   &quot;Set-Cookie&quot;;
+                add_header             X-Cached $upstream_cache_status;
+                proxy_pass             http://s3name.s3.amazonaws.com;
+    }
+    #access_log logs/xxx.log;
+    access_log /dev/null;
+}
+
+</code></pre>
+<p><font size=3>3、针对一些场景需要上传，但相互直接速度很慢或经常断开的场景，可以使用nginx进行中转，配置如下：</p>
+<pre><code class="language-shell">server
+ {
+ listen 80;
+ listen 443 ssl;
+ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ ssl_certificate /etc/nginx/ssl/xxx.crt;
+ ssl_certificate_key /etc/nginx/ssl/xxx.com.key;
+    server_name xxx.xxx.com;
+    location / {
+	    client_max_body_size 100m;
+		client_body_buffer_size 256k;
+		#缓存路径必须提前设置，并设置为可读写
+        client_body_temp_path /etc/nginx/proxy_temp;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://1.1.1.1;
+    }
+    #access_log logs/xxx.log;
+    access_log /dev/null;
+}
+
+</code></pre>
+<p><font size=3>4、针对一些场景下，需要携带cookie的nginx转发，可以在nginx转发配置中加入以下内容</p>
+<pre><code class="language-shell">location / {
+    proxy_cookie_domain domino_server nginx_server;
+}
+</code></pre>
+<p><font size=3>完整配置</p>
+<pre><code class="language-shell">server
+ {
+ #监听端口可以改
+ listen 80;
+ listen 443 ssl;
+ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ #填上证书的名字和路径
+ ssl_certificate /etc/nginx/ssl/xxx.crt;
+ ssl_certificate_key /etc/nginx/ssl/xxx.key;
+ #填上你的域名
+    server_name xxx.xxx.com;
+    location / {
+      client_max_body_size 100m;
+       proxy_set_header  Host  &quot;aaa.xxx.com&quot;;
+       proxy_set_header  User-Agent $http_user_agent;
+       proxy_set_header  Connection &quot;&quot;;
+       proxy_http_version 1.1;
+       proxy_pass http://aaa.xxx.com:2505;
+	   proxy_cookie_domain aaa.xxx.com xxx.xxx.com;
+    }
+    #access_log logs/xxx.log;
+    access_log /dev/null;
+}
+</code></pre>
+<p><font size=3>5、Nginx进行密码验证。因为有些web应用需要只给特定的人群访问，但本身又没有做密码验证，则可以通过nginx来进行密码验证。首先如下写入密码至验证文件：</p>
+<pre><code class="language-shell">echo &quot;test:yCdBGqFtXtbRR3O3&quot; &gt; key/auth.key
+</code></pre>
+<p><font size=3>写入验证文件后，添加以下配置以完成密码验证步骤：</p>
+<pre><code class="language-shell">server {
+    location / {
+        auth_basic &quot;please input user&amp;passwd&quot;;
+        auth_basic_user_file key/auth.key;
+    }
+}
+</code></pre>
+<p><font size=3>6、不允许使用IP或非nginx限定的域名访问web，可以使用以下方法跳转404</p>
+<pre><code class="language-shell">server {
+    listen       80 default;
+    server_name  _;
+
+    return      404;
+}
+</code></pre>
+<p><font size=3>6、针对国外的非阿里云服务器使用阿里云监控存在数据put不过来的问题，可以在香港部署一个代理站点，证书可以使用任意证书：</p>
+<pre><code class="language-shell">server
+ {
+ listen 80;
+ listen 443 ssl;
+ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ ssl_certificate /etc/nginx/ssl/xxx.crt;
+ ssl_certificate_key /etc/nginx/ssl/xxx.key;
+    server_name cms-cloudmonitor.aliyun.com;
+    location / {
+	    client_max_body_size 100m;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass https://cms-cloudmonitor.aliyun.com;
+    }
+    #access_log logs/xxx.log;
+    access_log /dev/null;
+}
+</code></pre>
+<p><font size=3>7、nginx做负载均衡</p>
+<pre><code class="language-shell">upstream abc {
+        # simple round-robin
+        server 10.0.0.1:80 max_fails=2 fail_timeout=30s weight=10;
+        server 10.0.0.2:80 max_fails=2 fail_timeout=30s weight=10;
+        check interval=3000 rise=2 fall=5 timeout=1000 type=http port=90;
+        check_http_send &quot;GET /monitor.html HTTP/1.0\r\n\r\n&quot;;
+        check_http_expect_alive http_2xx http_3xx;
+       }
+    server
+        {
+        listen 80;
+        listen 443 ssl;
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_certificate /etc/nginx/ssl/xxx.crt;
+        ssl_certificate_key /etc/nginx/ssl/xxx.key;
+        server_name a.d.com;
+        location / {
+        root   html;
+        index  index.html index.htm;
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_pass http://abc;
+        
+        location /status {
+        check_status;
+        access_log   off;
+        allow 10.0.0.0/8;
+        deny all;
+}
+        }
+        
+    }
+</code></pre>
+<p><font size=3>8、针对nginx反代中proxy_pass后的域名解析变化后造成站点5xx的问题，可以通过增加resolver+DNS服务器解决，这样可以使其遵守域名的TTL</p>
+<pre><code class="language-shell">server
+ {
+    resolver 114.114.114.114;
+    listen 80;
+    server_name www.aaa.com;
+    location / {
+	    client_max_body_size 100m;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://1.1.1.1;
+    }
+    #access_log logs/xxx.log;
+    access_log /dev/null;
+}
+</code></pre>
+<p><font size=3>9、带ssl的websocket可以用以下方法实现：</p>
+<pre><code class="language-shell">server
+ {
+ listen 8888 ssl;
+ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ ssl_certificate /etc/nginx/ssl/xxx.crt;
+ ssl_certificate_key /etc/nginx/ssl/xxxx.key;
+    server_name xxx.comfun.com;
+    location / {
+       proxy_buffer_size 64k;
+        proxy_buffers 32 32k;
+        proxy_busy_buffers_size 128k;
+       client_max_body_size 100m;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://1.1.1.1:9999;
+		proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &quot;upgrade&quot;;
+    }
+    #access_log logs/xxx.log;
+    access_log /dev/null;
+}
+</code></pre>
+<p><font size=3>10、针对http请求超过缓存的问题，可以通过单个配置文件里进行client_max_body_size和client_body_buffer_size相关设置，从未不影响全局nginx配置：</p>
+<pre><code class="language-shell">server
+{
+listen 80;
+    server_name xxx.xxx.com;
+    location / {
+        client_max_body_size 100m;
+        client_body_buffer_size 100m;
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://192.168.1.10;
+  }
+       #access_log logs/xxx.log;
+       #error_log  logs/xxx.log;
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
