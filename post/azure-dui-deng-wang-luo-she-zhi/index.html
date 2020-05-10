@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>利用OSS建立跨国传包站 | 随笔</title>
+<title>azure对等网络设置 | 随笔</title>
 <meta name="description" content="记录一下">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -68,12 +68,12 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/08/20190814191318.png')">
+            <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/figure04.png')">
             </div>
           
-          <h2 class="post-title">利用OSS建立跨国传包站</h2>
+          <h2 class="post-title">azure对等网络设置</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-10-03</span>
+            <span><i class="icon-calendar-outline"></i> 2019-06-26</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
@@ -87,23 +87,26 @@
             
           </div>
           <div class="post-content">
-            <p><font size=3>背景：因为跨国网络原因，造成日常将打完的包传输至境外（本文以印度为例）会比较缓慢甚至经常性中断，因此本文以阿里云OSS为例（其它的对象存储如腾讯云COS、AWS S3也有类似功能）。</p>
-<p><font size=3>1、在阿里云OSS建两个bucket，区域分别选择香港（不要选大陆区域，否则无法与国外其他区域同步）和印度孟买；</p>
-<p><font size=3>2、在本地生成包的服务器与远端服务器上配置ossutil，配置教程：<a href="https://help.aliyun.com/document_detail/120075.html?spm=a2c4g.11186623.2.9.177b1c7a6DUASa#concept-303829" title="ossuntil下载和配置教程">ossuntil下载和配置教程</a> ；需要注意的是，本地的生成包的服务器中，endpoint配置为香港的节点地址oss-cn-hongkong.aliyuncs.com，远端服务器配置为印度的节点地址oss-ap-south-1.aliyuncs.com（注：如果远端服务器为阿里云的ECS，可以配置为内网地址oss-ap-south-1-internal.aliyuncs.com，这样速度更快且不需要流量费用）；需要注意的是，如果通过salt远程调用或Windows计划任务执行，请将.config文件拷贝一份至：C:\Windows\System32\config\systemprofile；</p>
-<p><font size=3>3、安装顺序，进入基础设置模块，找到“跨区域复制”，点击“开启同步”；</p>
-<figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/2019/08/%E8%B7%A8%E5%8C%BA%E5%9F%9F%E8%AE%BE%E7%BD%AE1.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="2"><img src="https://wz-1255445901.file.myqcloud.com/2019/08/20190814190827.png" alt="" loading="lazy"></figure>
-<p><font size=3>4、在跨区域复制设置中，目标地址选择孟买，目标bucket选择需要同步的bucket，其他保持默认即可；完成设置后，即可进行传包操作；</p>
-<figure data-type="image" tabindex="3"><img src="https://wz-1255445901.file.myqcloud.com/2019/08/20190814191318.png" alt="" loading="lazy"></figure>
+            <p><font size=3>Azure不同可用区之间的VNET网络可以通过对等网络方式打通，这样可以在不同的可用区之间通过Azure自身的内网光纤进行互相通讯，防止公网造成干扰因素。</p>
+<p><font size=4><strong>一、在需要互联的可用区分别部署两个VNET网络</strong></p>
+<p><font size=3>在所有服务-网络-虚拟网络中中，点击“添加”进行VNET的添加，为了测试方便，我在空间地址中填写了10.100.0.0/16，这个后续看需求填写，另一个网络按这个步骤再填写一遍。</p>
+<figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/picture/1902/983df4603c3a9efc.jpg" alt="" loading="lazy"></figure>
+<p><font size=4><strong>二、在建立好的VNET中建立对等连接</strong></p>
+<p><font size=3>1、点击进入第一个新建的VNET，按图示进行添加对等网络的设置。</p>
+<figure data-type="image" tabindex="2"><img src="https://wz-1255445901.file.myqcloud.com/picture/1902/a1da45413f59b242.jpg" alt="" loading="lazy"></figure>
+<p><font size=3>2、在添加时，点击红框标注的地方，选择需要互联的VNET网络进行添加。</p>
+<figure data-type="image" tabindex="3"><img src="https://wz-1255445901.file.myqcloud.com/picture/1902/1edbe54d25f99c9e.jpg" alt="" loading="lazy"></figure>
+<p><font size=3>3、创建完成后，等到红框标注的状态显示“已连接”后，表示已经创建成功，然后按以上步骤再将对端的VNET和本区域的VNET进行对等互联。</p>
+<figure data-type="image" tabindex="4"><img src="https://wz-1255445901.file.myqcloud.com/picture/1902/19ad85b14d8dbbc6.png" alt="" loading="lazy"></figure>
 
           </div>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://blog.xuejian.site/post/shen-qing-mian-fei-dv-xing-tong-pei-fu-zheng-shu/">
+            <a class="purple-link" href="https://blog.xuejian.site/post/guo-ji-ban-s3-gua-zai-dao-linux-fu-wu-qi/">
               <h3 class="post-title">
-                下一篇：申请免费DV型通配符证书
+                下一篇：国际版s3挂载到Linux服务器
               </h3>
             </a>
           </div>

@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>利用OSS建立跨国传包站 | 随笔</title>
+<title>搭建简易的纯ipv6环境 | 随笔</title>
 <meta name="description" content="记录一下">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -68,12 +68,12 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/08/20190814191318.png')">
+            <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/20190613101951.png')">
             </div>
           
-          <h2 class="post-title">利用OSS建立跨国传包站</h2>
+          <h2 class="post-title">搭建简易的纯ipv6环境</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-10-03</span>
+            <span><i class="icon-calendar-outline"></i> 2019-06-18</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
@@ -87,27 +87,23 @@
             
           </div>
           <div class="post-content">
-            <p><font size=3>背景：因为跨国网络原因，造成日常将打完的包传输至境外（本文以印度为例）会比较缓慢甚至经常性中断，因此本文以阿里云OSS为例（其它的对象存储如腾讯云COS、AWS S3也有类似功能）。</p>
-<p><font size=3>1、在阿里云OSS建两个bucket，区域分别选择香港（不要选大陆区域，否则无法与国外其他区域同步）和印度孟买；</p>
-<p><font size=3>2、在本地生成包的服务器与远端服务器上配置ossutil，配置教程：<a href="https://help.aliyun.com/document_detail/120075.html?spm=a2c4g.11186623.2.9.177b1c7a6DUASa#concept-303829" title="ossuntil下载和配置教程">ossuntil下载和配置教程</a> ；需要注意的是，本地的生成包的服务器中，endpoint配置为香港的节点地址oss-cn-hongkong.aliyuncs.com，远端服务器配置为印度的节点地址oss-ap-south-1.aliyuncs.com（注：如果远端服务器为阿里云的ECS，可以配置为内网地址oss-ap-south-1-internal.aliyuncs.com，这样速度更快且不需要流量费用）；需要注意的是，如果通过salt远程调用或Windows计划任务执行，请将.config文件拷贝一份至：C:\Windows\System32\config\systemprofile；</p>
-<p><font size=3>3、安装顺序，进入基础设置模块，找到“跨区域复制”，点击“开启同步”；</p>
-<figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/2019/08/%E8%B7%A8%E5%8C%BA%E5%9F%9F%E8%AE%BE%E7%BD%AE1.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="2"><img src="https://wz-1255445901.file.myqcloud.com/2019/08/20190814190827.png" alt="" loading="lazy"></figure>
-<p><font size=3>4、在跨区域复制设置中，目标地址选择孟买，目标bucket选择需要同步的bucket，其他保持默认即可；完成设置后，即可进行传包操作；</p>
-<figure data-type="image" tabindex="3"><img src="https://wz-1255445901.file.myqcloud.com/2019/08/20190814191318.png" alt="" loading="lazy"></figure>
+            <p><font size=3>1、android手机需要支持4G，打开4G后，确认打开<a href="https://ipv6-test.com" title="http://test-ipv6.com">https://ipv6-test.com</a>,确认是否有ipv6，如果没有，请更换手机或手机卡（该站点位于国外，如果难以打开，先在代理环境下加载一次，然后再切回4G转换的wifi下打开），如图表示有ipv6，可以进行下一步（建议android手机上使用联通卡或移动卡，并使用4G套餐）：</p>
+<figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613100942.png" alt="" loading="lazy"></figure>
+<p><font size=3>2、iphone或ipad请确认系统版本在ios11及以上，连接wifi，点击wifi旁边红框标注的叹号：</p>
+<figure data-type="image" tabindex="2"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190612200310.png" alt="" loading="lazy"></figure>
+<p><font size=3>3、点击进入后，点击红框标注的“配置IP”，选择BootP，完成后如下图所示：</p>
+<figure data-type="image" tabindex="3"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613100856.png" alt="" loading="lazy"></figure>
+<p><font size=3>4、在该界面拉到最后，选择红框标注的配置DNS：</p>
+<figure data-type="image" tabindex="4"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613101410.png" alt="" loading="lazy"></figure>
+<p><font size=3>5、进入后，按以下步骤进行，如果原有DNS，请删除后进行第二步操作，第二步填入DSN地址：240C::6666</p>
+<figure data-type="image" tabindex="5"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613101744.png" alt="" loading="lazy"></figure>
+<p><font size=3>6、再次打开ipv6验证站点<a href="https://ipv6-test.com" title="http://test-ipv6.com">https://ipv6-test.com</a>，如果显示如下所示的说明已经处于纯ipv6，可以进行测试</p>
+<figure data-type="image" tabindex="6"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613101951.png" alt="" loading="lazy"></figure>
 
           </div>
         </div>
 
         
-          <div class="next-post">
-            <a class="purple-link" href="https://blog.xuejian.site/post/shen-qing-mian-fei-dv-xing-tong-pei-fu-zheng-shu/">
-              <h3 class="post-title">
-                下一篇：申请免费DV型通配符证书
-              </h3>
-            </a>
-          </div>
-          
       </div>
 
       

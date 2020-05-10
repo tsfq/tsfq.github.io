@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xuejian.site</id>
     <title>随笔</title>
-    <updated>2020-05-10T04:31:02.255Z</updated>
+    <updated>2020-05-10T04:34:05.385Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xuejian.site"/>
     <link rel="self" href="https://blog.xuejian.site/atom.xml"/>
@@ -1082,6 +1082,25 @@ bt-tracker=http://tracker.internetwarriors.net:1337/announce,http://explodie.org
 ]]></content>
     </entry>
     <entry>
+        <title type="html"><![CDATA[azure对等网络设置]]></title>
+        <id>https://blog.xuejian.site/post/azure-dui-deng-wang-luo-she-zhi/</id>
+        <link href="https://blog.xuejian.site/post/azure-dui-deng-wang-luo-she-zhi/">
+        </link>
+        <updated>2019-06-26T04:33:15.000Z</updated>
+        <content type="html"><![CDATA[<p><font size=3>Azure不同可用区之间的VNET网络可以通过对等网络方式打通，这样可以在不同的可用区之间通过Azure自身的内网光纤进行互相通讯，防止公网造成干扰因素。</p>
+<p><font size=4><strong>一、在需要互联的可用区分别部署两个VNET网络</strong></p>
+<p><font size=3>在所有服务-网络-虚拟网络中中，点击“添加”进行VNET的添加，为了测试方便，我在空间地址中填写了10.100.0.0/16，这个后续看需求填写，另一个网络按这个步骤再填写一遍。</p>
+<figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/picture/1902/983df4603c3a9efc.jpg" alt="" loading="lazy"></figure>
+<p><font size=4><strong>二、在建立好的VNET中建立对等连接</strong></p>
+<p><font size=3>1、点击进入第一个新建的VNET，按图示进行添加对等网络的设置。</p>
+<figure data-type="image" tabindex="2"><img src="https://wz-1255445901.file.myqcloud.com/picture/1902/a1da45413f59b242.jpg" alt="" loading="lazy"></figure>
+<p><font size=3>2、在添加时，点击红框标注的地方，选择需要互联的VNET网络进行添加。</p>
+<figure data-type="image" tabindex="3"><img src="https://wz-1255445901.file.myqcloud.com/picture/1902/1edbe54d25f99c9e.jpg" alt="" loading="lazy"></figure>
+<p><font size=3>3、创建完成后，等到红框标注的状态显示“已连接”后，表示已经创建成功，然后按以上步骤再将对端的VNET和本区域的VNET进行对等互联。</p>
+<figure data-type="image" tabindex="4"><img src="https://wz-1255445901.file.myqcloud.com/picture/1902/19ad85b14d8dbbc6.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[国际版s3挂载到Linux服务器]]></title>
         <id>https://blog.xuejian.site/post/guo-ji-ban-s3-gua-zai-dao-linux-fu-wu-qi/</id>
         <link href="https://blog.xuejian.site/post/guo-ji-ban-s3-gua-zai-dao-linux-fu-wu-qi/">
@@ -1279,6 +1298,26 @@ table https_hosts {
 <p><font size=3>6、用以下命令启动sniproxy</p>
 <pre><code class="language-shell">sniproxy -c /etc/sniproxy.conf
 </code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[搭建简易的纯ipv6环境]]></title>
+        <id>https://blog.xuejian.site/post/da-jian-jian-yi-de-chun-ipv6-huan-jing/</id>
+        <link href="https://blog.xuejian.site/post/da-jian-jian-yi-de-chun-ipv6-huan-jing/">
+        </link>
+        <updated>2019-06-18T04:31:40.000Z</updated>
+        <content type="html"><![CDATA[<p><font size=3>1、android手机需要支持4G，打开4G后，确认打开<a href="https://ipv6-test.com" title="http://test-ipv6.com">https://ipv6-test.com</a>,确认是否有ipv6，如果没有，请更换手机或手机卡（该站点位于国外，如果难以打开，先在代理环境下加载一次，然后再切回4G转换的wifi下打开），如图表示有ipv6，可以进行下一步（建议android手机上使用联通卡或移动卡，并使用4G套餐）：</p>
+<figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613100942.png" alt="" loading="lazy"></figure>
+<p><font size=3>2、iphone或ipad请确认系统版本在ios11及以上，连接wifi，点击wifi旁边红框标注的叹号：</p>
+<figure data-type="image" tabindex="2"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190612200310.png" alt="" loading="lazy"></figure>
+<p><font size=3>3、点击进入后，点击红框标注的“配置IP”，选择BootP，完成后如下图所示：</p>
+<figure data-type="image" tabindex="3"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613100856.png" alt="" loading="lazy"></figure>
+<p><font size=3>4、在该界面拉到最后，选择红框标注的配置DNS：</p>
+<figure data-type="image" tabindex="4"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613101410.png" alt="" loading="lazy"></figure>
+<p><font size=3>5、进入后，按以下步骤进行，如果原有DNS，请删除后进行第二步操作，第二步填入DSN地址：240C::6666</p>
+<figure data-type="image" tabindex="5"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613101744.png" alt="" loading="lazy"></figure>
+<p><font size=3>6、再次打开ipv6验证站点<a href="https://ipv6-test.com" title="http://test-ipv6.com">https://ipv6-test.com</a>，如果显示如下所示的说明已经处于纯ipv6，可以进行测试</p>
+<figure data-type="image" tabindex="6"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613101951.png" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>
