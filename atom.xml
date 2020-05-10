@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xuejian.site</id>
     <title>随笔</title>
-    <updated>2020-05-10T04:16:45.318Z</updated>
+    <updated>2020-05-10T04:18:11.433Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xuejian.site"/>
     <link rel="self" href="https://blog.xuejian.site/atom.xml"/>
@@ -10,6 +10,56 @@
     <logo>https://blog.xuejian.site/images/avatar.png</logo>
     <icon>https://blog.xuejian.site/favicon.ico</icon>
     <rights>All rights reserved 2020, 随笔</rights>
+    <entry>
+        <title type="html"><![CDATA[利用可道云实现OSS内网图形化]]></title>
+        <id>https://blog.xuejian.site/post/li-yong-ke-dao-yun-shi-xian-oss-nei-wang-tu-xing-hua/</id>
+        <link href="https://blog.xuejian.site/post/li-yong-ke-dao-yun-shi-xian-oss-nei-wang-tu-xing-hua/">
+        </link>
+        <updated>2019-10-28T04:17:13.000Z</updated>
+        <content type="html"><![CDATA[<p><font size=3>背景：因为公司的的前端资源在OSS上，需要实现内网测试服务器上使用图形化上传下载文件而不需要分配AccessKey给使用者，最大程度避免各种原因造成AccessKey泄漏。</p>
+<p><strong><font size=4>一、挂载oss至centos主机</strong></p>
+<p><font size=3>挂载教程：<a href="https://note.xuejian.site/web/#/page/26">https://note.xuejian.site/web/#/page/26</a> ，需要注意的是，最后一步使用以下命令，保证所有系统用户都能读取：</p>
+<pre><code class="language-shell">ossfs my-bucket /oss/ossfs -ourl=http://oss-cn-hangzhou.aliyuncs.com  -o allow_other
+</code></pre>
+<p><strong><font size=4>二、centos安装nginx和php环境</strong></p>
+<p><font size=3>本文以编译安装举例，如果不擅长可以使用网上的一键脚本进行安装；</p>
+<p><strong><font size=4>三、图形化设置</strong></p>
+<p><font size=3>1、使用以下命令将图形化的zip包拷贝至新目录（如果后期更新，请更换包名）：</p>
+<pre><code class="language-shell">cd /www
+wget http://static.kodcloud.com/update/download/kodexplorer4.40.zip
+unzip kodexplorer4.40.zip
+mv kodexplorer4.40 kodexplorer
+chmod -R 777 kodexplorer
+</code></pre>
+<p><font size=3>2、进入nginx配置文件夹/usr/local/nginx/conf/vhost，新建域名开头的配置文件，以本文为例，新建了yqsetting.conf这个配置文件，配置如下：</p>
+<pre><code class="language-shell">server {
+        listen 3505;
+        server_name  xxx.xxx.com;
+        root  /www/KodExplorer;
+        index  index.html index.htm index.php default.php tz.php;
+        error_page   500 502 503 504  /50x.html;
+
+        location = /50x.html {
+        root html;
+        }
+
+        location ~* ^.+\.php(\/.*)*$ {
+        fastcgi_pass   127.0.0.1:9000;
+        #fastcgi_pass unix:/usr/local/php5-fpm.sock;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+}
+</code></pre>
+<p><font size=3>3、按照图形指示设置完admin的密码后登陆，然后依照图示步骤添加用户即可</p>
+<figure data-type="image" tabindex="1"><img src="https://s3.xuejian.site/2019/10/20191028135347.png" alt="" loading="lazy"></figure>
+<p><font size=3>4、添加完用户后，将我们挂载的OSS目录做软连接到该用户目录下：</p>
+<pre><code class="language-shell">ln -s /oss/setting /www/KodExplorer/data/User/setting/home/.
+</code></pre>
+<p><font size=3>5、完成后可以使用刚才创建的用户直接登陆进行上传下载操作。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[利用OSS建立跨国传包站]]></title>
         <id>https://blog.xuejian.site/post/li-yong-oss-jian-li-kua-guo-chuan-bao-zhan/</id>
