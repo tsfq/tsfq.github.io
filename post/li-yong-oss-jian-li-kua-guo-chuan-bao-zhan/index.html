@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>sniproxy安装使用 | 随笔</title>
+<title>利用OSS建立跨国传包站 | 随笔</title>
 <meta name="description" content="记录一下">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -68,73 +68,36 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/20190619114249.png')">
+            <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/08/20190814191318.png')">
             </div>
           
-          <h2 class="post-title">sniproxy安装使用</h2>
+          <h2 class="post-title">利用OSS建立跨国传包站</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-06-18</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                    技术
-                    
-                  </a>
-                
-              </span>
+            <span><i class="icon-calendar-outline"></i> 2019-10-03</span>
             
           </div>
           <div class="post-content">
-            <p><font size=3>1、购买Ubuntu服务器，要求Ubuntu 16.04及以上，待服务器开启后，执行以下命令关闭服务器防火墙和临时关闭selinux</p>
-<pre><code class="language-shell">ufw disable
-setenforce 0
-</code></pre>
-<p><font size=3>2、执行以下操作，彻底关闭selinux，防止重启后selinux再次启动</p>
-<pre><code class="language-shell">修改/etc/selinux/config 文件
-将SELINUX=enforcing改为SELINUX=disabled
-</code></pre>
-<p><font size=3>3、安装依赖</p>
-<pre><code class="language-shell">sudo apt-get install autotools-dev cdbs debhelper dh-autoreconf dpkg-dev gettext libev-dev libpcre3-dev libudns-dev pkg-config fakeroot devscripts
-</code></pre>
-<p><font size=3>4、安装git软件</p>
-<pre><code class="language-shell">sudo apt-get install git
-</code></pre>
-<p><font size=3>5、从github上获取sniproxy</p>
-<pre><code class="language-shell">git clone https://github.com/dlundquist/sniproxy.git
-</code></pre>
-<p><font size=3>6、先进入sniproxy，然后执行第二步</p>
-<pre><code class="language-shell">cd sniproxy
-./autogen.sh &amp;&amp; ./configure &amp;&amp; make check &amp;&amp; sudo make install
-</code></pre>
-<p><font size=3>备份/etc/sniproxy.conf，然后vi /etc/sniproxy.conf，输入以下内容</p>
-<pre><code class="language-shell">user nobody
-resolver {
-mode ipv4_only}  //如果服务器只有ipv4地址一定要这个选项，不然会概率性SSL错误或503
-listen 80 {
-proto http
-table http_hosts
-}
-table http_hosts {
-.* *:80
-}
-listen 0.0.0.0:443 {
-proto tls
-table https_hosts
-}
-table https_hosts {
-.* *:443
-}
-</code></pre>
-<p><font size=3>6、用以下命令启动sniproxy</p>
-<pre><code class="language-shell">sniproxy -c /etc/sniproxy.conf
-</code></pre>
+            <p><font size=3>背景：因为跨国网络原因，造成日常将打完的包传输至境外（本文以印度为例）会比较缓慢甚至经常性中断，因此本文以阿里云OSS为例（其它的对象存储如腾讯云COS、AWS S3也有类似功能）。</p>
+<p><font size=3>1、在阿里云OSS建两个bucket，区域分别选择香港（不要选大陆区域，否则无法与国外其他区域同步）和印度孟买；</p>
+<p><font size=3>2、在本地生成包的服务器与远端服务器上配置ossutil，配置教程：<a href="https://help.aliyun.com/document_detail/120075.html?spm=a2c4g.11186623.2.9.177b1c7a6DUASa#concept-303829" title="ossuntil下载和配置教程">ossuntil下载和配置教程</a> ；需要注意的是，本地的生成包的服务器中，endpoint配置为香港的节点地址oss-cn-hongkong.aliyuncs.com，远端服务器配置为印度的节点地址oss-ap-south-1.aliyuncs.com（注：如果远端服务器为阿里云的ECS，可以配置为内网地址oss-ap-south-1-internal.aliyuncs.com，这样速度更快且不需要流量费用）；需要注意的是，如果通过salt远程调用或Windows计划任务执行，请将.config文件拷贝一份至：C:\Windows\System32\config\systemprofile；</p>
+<p><font size=3>3、安装顺序，进入基础设置模块，找到“跨区域复制”，点击“开启同步”；</p>
+<figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/2019/08/%E8%B7%A8%E5%8C%BA%E5%9F%9F%E8%AE%BE%E7%BD%AE1.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://wz-1255445901.file.myqcloud.com/2019/08/20190814190827.png" alt="" loading="lazy"></figure>
+<p><font size=3>4、在跨区域复制设置中，目标地址选择孟买，目标bucket选择需要同步的bucket，其他保持默认即可；完成设置后，即可进行传包操作；</p>
+<figure data-type="image" tabindex="3"><img src="https://wz-1255445901.file.myqcloud.com/2019/08/20190814191318.png" alt="" loading="lazy"></figure>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://blog.xuejian.site/post/shen-qing-mian-fei-dv-xing-tong-pei-fu-zheng-shu/">
+              <h3 class="post-title">
+                下一篇：申请免费DV型通配符证书
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       
