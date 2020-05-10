@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>利用可道云实现OSS内网图形化 | 随笔</title>
+<title>国际版s3挂载到Linux服务器 | 随笔</title>
 <meta name="description" content="记录一下">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -68,12 +68,12 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2019/10/20191028160835.png')">
+            <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/s3-500x256.jpg')">
             </div>
           
-          <h2 class="post-title">利用可道云实现OSS内网图形化</h2>
+          <h2 class="post-title">国际版s3挂载到Linux服务器</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-10-28</span>
+            <span><i class="icon-calendar-outline"></i> 2019-06-24</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
@@ -87,57 +87,53 @@
             
           </div>
           <div class="post-content">
-            <p><font size=3>背景：因为公司的的前端资源在OSS上，需要实现内网测试服务器上使用图形化上传下载文件而不需要分配AccessKey给使用者，最大程度避免各种原因造成AccessKey泄漏。</p>
-<p><strong><font size=4>一、挂载oss至centos主机</strong></p>
-<p><font size=3>挂载教程：<a href="https://note.xuejian.site/web/#/page/26">https://note.xuejian.site/web/#/page/26</a> ，需要注意的是，最后一步使用以下命令，保证所有系统用户都能读取：</p>
-<pre><code class="language-shell">ossfs my-bucket /oss/ossfs -ourl=http://oss-cn-hangzhou.aliyuncs.com  -o allow_other
+            <p><font size=3>1、安装必要的软件依赖</p>
+<pre><code class="language-shell">sudo yum install automake fuse fuse-devel gcc-c++ git libcurl-devel libxml2-devel make openssl-devel mailcap
 </code></pre>
-<p><strong><font size=4>二、centos安装nginx和php环境</strong></p>
-<p><font size=3>本文以编译安装举例，如果不擅长可以使用网上的一键脚本进行安装；</p>
-<p><strong><font size=4>三、图形化设置</strong></p>
-<p><font size=3>1、使用以下命令将图形化的zip包拷贝至新目录（如果后期更新，请更换包名）：</p>
-<pre><code class="language-shell">cd /www
-wget http://static.kodcloud.com/update/download/kodexplorer4.40.zip
-unzip kodexplorer4.40.zip
-mv kodexplorer4.40 kodexplorer
-chmod -R 777 kodexplorer
-</code></pre>
-<p><font size=3>2、进入nginx配置文件夹/usr/local/nginx/conf/vhost，新建域名开头的配置文件，以本文为例，新建了yqsetting.conf这个配置文件，配置如下：</p>
-<pre><code class="language-shell">server {
-        listen 3505;
-        server_name  xxx.xxx.com;
-        root  /www/KodExplorer;
-        index  index.html index.htm index.php default.php tz.php;
-        error_page   500 502 503 504  /50x.html;
+<p><font size=3>2、使用git命令下载及安装s3fs</p>
+<pre><code class="language-shell">git clone https://github.com/s3fs-fuse/s3fs-fuse.git
 
-        location = /50x.html {
-        root html;
-        }
+cd s3fs-fuse
 
-        location ~* ^.+\.php(\/.*)*$ {
-        fastcgi_pass   127.0.0.1:9000;
-        #fastcgi_pass unix:/usr/local/php5-fpm.sock;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-        include        fastcgi_params;
-    }
-}
+./autogen.sh
+
+./configure
+
+make
+
+sudo make install
 </code></pre>
-<p><font size=3>3、按照图形指示设置完admin的密码后登陆，然后依照图示步骤添加用户即可</p>
-<figure data-type="image" tabindex="1"><img src="https://s3.xuejian.site/2019/10/20191028135347.png" alt="" loading="lazy"></figure>
-<p><font size=3>4、添加完用户后，将我们挂载的OSS目录做软连接到该用户目录下：</p>
-<pre><code class="language-shell">ln -s /oss/setting /www/KodExplorer/data/User/setting/home/.
+<p><font size=3>3、检测s3fs是否生效，如出现以下结果表示生效</p>
+<pre><code class="language-shell">s3fs: missing BUCKET argument.
+
+Usage: s3fs BUCKET:[PATH] MOUNTPOINT [OPTION]...
 </code></pre>
-<p><font size=3>5、完成后可以使用刚才创建的用户直接登陆进行上传下载操作。</p>
+<p><font size=3>4、生成密钥文件并授权，其中的密钥为IAM用户生成</p>
+<pre><code class="language-shell">echo AKIAIOEO4E2VOHLxxxxx:2LXBboddEpRLmWl48i3+b4ziwPL3bJ4vxxxxxxxx &gt; /usr/xj/.passwd-s3fs
+chmod 600 /usr/xj/.passwd-s3fs
+</code></pre>
+<p><font size=3>5、非AWS EC2手动挂载非域名为桶名的存储桶，url根据存储桶所在的区域不同更换网址，挂载目录需要提前建立，url地址可以随便打开一个存储桶的文件获得</p>
+<figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/picture/1905/f0c034b64a39a221.png" alt="" loading="lazy"></figure>
+<pre><code class="language-shell">s3fs yqludorizhi /s3/yqludorizhi -o passwd_file=/usr/xj/.passwd-s3fs -o url=https://s3.ap-south-1.amazonaws.com 
+</code></pre>
+<p><font size=3>6、非AWS EC2手动挂载以域名为桶名的存储桶</p>
+<pre><code class="language-shell">s3fs &quot;xxx.aaa.com&quot; /s3/xxx -o passwd_file=/usr/xj/.passwd-s3fs -o url=https://s3.ap-south-1.amazonaws.com  -o use_path_request_style
+</code></pre>
+<p><font size=3>7、EC2挂载非域名为桶名的存储桶</p>
+<pre><code class="language-shell">s3fs s3fs-mount-bucket /home/ec2-user/s3mnt -o passwd_file=/usr/xj/.passwd-s3fs -o endpoint=ap-northeast-1
+</code></pre>
+<p><font size=3>8、EC2挂载以域名为桶名的存储桶</p>
+<pre><code class="language-shell">s3fs s3fs-mount-bucket /home/ec2-user/s3mnt -o passwd_file=/usr/xj/.passwd-s3fs -o endpoint=ap-northeast-1 -o use_path_request_style
+</code></pre>
 
           </div>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://blog.xuejian.site/post/li-yong-oss-jian-li-kua-guo-chuan-bao-zhan/">
+            <a class="purple-link" href="https://blog.xuejian.site/post/yi-dong-fu-qia-shi-xian-dan-qia-iphone-shuang-qia-shuang-dai/">
               <h3 class="post-title">
-                下一篇：利用OSS建立跨国传包站
+                下一篇：移动副卡实现单卡iphone双卡双待
               </h3>
             </a>
           </div>

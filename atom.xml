@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xuejian.site</id>
     <title>随笔</title>
-    <updated>2020-05-10T04:24:00.543Z</updated>
+    <updated>2020-05-10T04:27:55.441Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xuejian.site"/>
     <link rel="self" href="https://blog.xuejian.site/atom.xml"/>
@@ -970,6 +970,52 @@ bt-tracker=http://tracker.internetwarriors.net:1337/announce,http://explodie.org
 <p><font size=3>8、协议选择TCP，远程端口随便填一个，如果被占用会有提示，本地端口使用6800，完成后点击添加</p>
 <figure data-type="image" tabindex="3"><img src="https://wz-1255445901.file.myqcloud.com/2019/07/20190709190502.png" alt="" loading="lazy"></figure>
 <p><font size=3>9、完成操作后的使用方法：<a href="http://ngrok.cc/_book/start/ngrok_linux.html" title="ngrok使用方法">ngrok使用方法</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[国际版s3挂载到Linux服务器]]></title>
+        <id>https://blog.xuejian.site/post/guo-ji-ban-s3-gua-zai-dao-linux-fu-wu-qi/</id>
+        <link href="https://blog.xuejian.site/post/guo-ji-ban-s3-gua-zai-dao-linux-fu-wu-qi/">
+        </link>
+        <updated>2019-06-24T04:25:00.000Z</updated>
+        <content type="html"><![CDATA[<p><font size=3>1、安装必要的软件依赖</p>
+<pre><code class="language-shell">sudo yum install automake fuse fuse-devel gcc-c++ git libcurl-devel libxml2-devel make openssl-devel mailcap
+</code></pre>
+<p><font size=3>2、使用git命令下载及安装s3fs</p>
+<pre><code class="language-shell">git clone https://github.com/s3fs-fuse/s3fs-fuse.git
+
+cd s3fs-fuse
+
+./autogen.sh
+
+./configure
+
+make
+
+sudo make install
+</code></pre>
+<p><font size=3>3、检测s3fs是否生效，如出现以下结果表示生效</p>
+<pre><code class="language-shell">s3fs: missing BUCKET argument.
+
+Usage: s3fs BUCKET:[PATH] MOUNTPOINT [OPTION]...
+</code></pre>
+<p><font size=3>4、生成密钥文件并授权，其中的密钥为IAM用户生成</p>
+<pre><code class="language-shell">echo AKIAIOEO4E2VOHLxxxxx:2LXBboddEpRLmWl48i3+b4ziwPL3bJ4vxxxxxxxx &gt; /usr/xj/.passwd-s3fs
+chmod 600 /usr/xj/.passwd-s3fs
+</code></pre>
+<p><font size=3>5、非AWS EC2手动挂载非域名为桶名的存储桶，url根据存储桶所在的区域不同更换网址，挂载目录需要提前建立，url地址可以随便打开一个存储桶的文件获得</p>
+<figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/picture/1905/f0c034b64a39a221.png" alt="" loading="lazy"></figure>
+<pre><code class="language-shell">s3fs yqludorizhi /s3/yqludorizhi -o passwd_file=/usr/xj/.passwd-s3fs -o url=https://s3.ap-south-1.amazonaws.com 
+</code></pre>
+<p><font size=3>6、非AWS EC2手动挂载以域名为桶名的存储桶</p>
+<pre><code class="language-shell">s3fs &quot;xxx.aaa.com&quot; /s3/xxx -o passwd_file=/usr/xj/.passwd-s3fs -o url=https://s3.ap-south-1.amazonaws.com  -o use_path_request_style
+</code></pre>
+<p><font size=3>7、EC2挂载非域名为桶名的存储桶</p>
+<pre><code class="language-shell">s3fs s3fs-mount-bucket /home/ec2-user/s3mnt -o passwd_file=/usr/xj/.passwd-s3fs -o endpoint=ap-northeast-1
+</code></pre>
+<p><font size=3>8、EC2挂载以域名为桶名的存储桶</p>
+<pre><code class="language-shell">s3fs s3fs-mount-bucket /home/ec2-user/s3mnt -o passwd_file=/usr/xj/.passwd-s3fs -o endpoint=ap-northeast-1 -o use_path_request_style
+</code></pre>
 ]]></content>
     </entry>
     <entry>
