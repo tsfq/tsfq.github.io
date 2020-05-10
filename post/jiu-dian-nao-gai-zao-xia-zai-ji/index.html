@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>旧电脑改造下载机 | 随笔</title>
+<meta name="description" content="记录一下">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1589084536619">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://blog.xuejian.site/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://blog.xuejian.site">
+        <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1589084536619" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://blog.xuejian.site">
+        <h1 class="site-title">随笔</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/07/20190709192817.png')">
+            </div>
+          
+          <h2 class="post-title">旧电脑改造下载机</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-07-09</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
+                    技术
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p><font size=3>1、安装深度Linux，安装教程可以直接参考deepin官方教程：<a href="https://www.deepin.org/installation/" title="deepin安装教程">deepin安装教程</a> ；</p>
+<p><font size=3>2、打开终端，输入以下命令：</p>
+<pre><code class="language-shell">sudo apt install aria2
+</code></pre>
+<p><font size=3>3、建立aria2的配置文件夹并进入：</p>
+<pre><code class="language-shell">mkdir -p /home/tsfq/conf/
+cd /home/tsfq/conf
+</code></pre>
+<p><font size=3>4、用vi命令建立aria2.conf配置文件，这部分参考<a href="https://blog.icehoney.me/posts/2015-01-31-Aria2-download" title="雪月秋水(acgotaku)">雪月秋水(acgotaku)</a>：</p>
+<pre><code class="language-shell"># 启用RPC, 默认:false
+enable-rpc=true
+# 允许所有来源, 默认:false
+rpc-allow-origin-all=true
+# 允许非外部访问, 默认:false
+rpc-listen-all=true
+# 事件轮询方式, 取值:[epoll, kqueue, port, poll, select], 不同系统默认值不同
+#event-poll=select
+# RPC监听端口, 端口被占用时可以修改, 默认:6800
+rpc-listen-port=6800
+# 设置的RPC授权令牌, v1.18.4新增功能, 取代 --rpc-user 和 --rpc-passwd 选项,该密码自己设定
+rpc-secret=test
+# 设置的RPC访问用户名, 此选项新版已废弃, 建议改用 --rpc-secret 选项
+#rpc-user=admin
+# 设置的RPC访问密码, 此选项新版已废弃, 建议改用 --rpc-secret 选项
+#rpc-passwd=admin
+## 文件保存相关 ##
+
+# 文件的保存路径(可使用绝对路径或相对路径), 默认: 当前启动位置
+dir=/home/tsfq/Downloads
+# 启用磁盘缓存, 0为禁用缓存, 需1.16以上版本, 默认:16M
+disk-cache=32M
+# 文件预分配方式, 能有效降低磁盘碎片, 默认:prealloc
+# falloc和trunc则需要文件系统和内核支持
+# NTFS建议使用falloc, EXT3/4建议trunc, MAC 下需要注释此项
+file-allocation=none
+#无文件分配限制
+no-file-allocation-limit=10M
+#允许覆盖
+allow-overwrite=false
+#自动文件重命名
+auto-file-renaming=true
+# 断点续传
+continue=true
+
+## 下载连接相关 ##
+# 较新的版本开启后会在任务完成后依然保留.aria2文件
+ftp-pasv=true
+#设置FTP传输类型。类型是二进制或ASCII
+ftp-type=binary
+#设置超时时间
+timeout=120
+#连接超时时间, 超过60秒还没成功的,就算连接失败
+connect-timeout=60
+# 最大同时下载任务数, 运行时可修改, 默认:5
+max-concurrent-downloads=10
+# 同一服务器连接数, 添加时可指定, 默认:1
+max-connection-per-server=5
+# 最小文件分片大小, 添加时可指定, 取值范围1M -1024M, 默认:20M
+# 假定size=10M, 文件为20MiB 则使用两个来源下载; 文件为15MiB 则使用一个来源下载
+min-split-size=10M
+# 单个任务最大线程数, 添加时可指定, 默认:5
+split=5
+# 整体下载速度限制, 运行时可修改, 默认:0
+max-overall-download-limit=8388608
+# 单个任务下载速度限制, 默认:0
+max-download-limit=8388608
+# 整体上传速度限制, 运行时可修改, 默认:5M
+max-overall-upload-limit=204800
+# 单个任务上传速度限制, 默认:0
+max-upload-limit=204800
+# 禁用IPv6, 默认:false
+disable-ipv6=true
+# 禁用https证书检查
+check-certificate=false
+
+# 定时保存会话, 0为退出时才保存, 需1.16.1以上版本, 默认:0
+save-session-interval=60
+
+
+## BT/PT下载相关 ##
+
+# 当下载的是一个种子(以.torrent结尾)时, 自动开始BT任务, 默认:true
+#follow-torrent=true
+# BT监听端口, 当端口被屏蔽时使用, 默认:6881-6999
+#listen-port=16888
+# 单个种子最大连接数, 默认:55
+bt-max-peers=55
+bt-max-open-files=100
+# 打开DHT功能, PT需要禁用, 默认:true
+enable-dht=true
+# 打开IPv6 DHT功能, PT需要禁用
+#enable-dht6=false
+# DHT网络监听端口, 默认:6881-6999
+#dht-listen-port=6888
+# 本地节点查找, PT需要禁用, 默认:false
+bt-enable-lpd=false
+# 种子交换, PT需要禁用, 默认:true
+enable-peer-exchange=false
+# 每个种子限速, 对少种的PT很有用, 默认:50K
+bt-request-peer-speed-limit=50K
+#设置超时时间,没有速度后一段时间任务就自动停止
+bt-stop-timeout=0
+# 客户端伪装, PT需要
+peer-id-prefix=-TR2770-
+user-agent=Transmission/2.77
+# 当种子的分享率达到这个数时, 自动停止做种, 0为一直做种, 默认:1.0
+seed-ratio=0.1
+# 强制保存会话, 即使任务已经完成, 默认:false
+# 较新的版本开启后会在任务完成后依然保留.aria2文件
+#force-save=false
+# BT校验相关, 默认:true
+#bt-hash-check-seed=true
+# 继续之前的BT任务时, 无需再次校验, 默认:false
+bt-seed-unverified=true
+# 保存磁力链接元数据为种子文件(.torrent文件), 默认:false
+bt-save-metadata=true
+
+
+### Log
+log=/home/tsfq/conf/aria2.log
+log-level=notice
+
+bt-tracker=http://tracker.internetwarriors.net:1337/announce,http://explodie.org:6969/announce,http://tracker2.itzmx.com:6961/announce,http://tracker4.itzmx.com:2710/announce,http://tracker3.itzmx.com:6961/announce,http://tracker1.itzmx.com:8080/announce,http://open.acgnxtracker.com:80/announce,http://tracker.port443.xyz:6969/announce,http://0d.kebhana.mx:443/announce,http://torrent.nwps.ws:80/announce,http://opentracker.xyz:80/announce,http://open.trackerlist.xyz:80/announce,http://tracker.novg.net:6969/announce,http://torrentclub.tech:6969/announce,http://t.nyaatracker.com:80/announce,http://retracker.mgts.by:80/announce,http://open.acgtracker.com:1096/announce,http://tracker.torrentyorg.pl:80/announce,http://tracker.tfile.me:80/announce.php,http://tracker.open-tracker.org:1337/announce,http://tracker.gbitt.info:80/announce,http://peersteers.org:80/announce
+
+</code></pre>
+<p><font size=3>5、使用以下命令开启aria2：</p>
+<pre><code class="language-shell">aria2c --conf-path=/home/tsfq/conf/aria2.conf &gt; /dev/null &amp;
+</code></pre>
+<p><font size=3>6、打开WEB控制页：<a href="http://ariang.xuejian.site">http://ariang.xuejian.site</a> ，在ariang的设置中，第一部分填入内网IP，第二部分选择websocket，然后选择激活，并可以在同一网络下使用；</p>
+<figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/2019/07/20190709185650.png" alt="" loading="lazy"></figure>
+<p><font size=3>7、为了提供外网远程操作aria2，需要进行内网穿透，打开<a href="ngrok.cc">ngrok.cc</a>，注册后按步骤开始进行隧道开通</p>
+<figure data-type="image" tabindex="2"><img src="https://wz-1255445901.file.myqcloud.com/2019/07/20190709190306.png" alt="" loading="lazy"></figure>
+<p><font size=3>8、协议选择TCP，远程端口随便填一个，如果被占用会有提示，本地端口使用6800，完成后点击添加</p>
+<figure data-type="image" tabindex="3"><img src="https://wz-1255445901.file.myqcloud.com/2019/07/20190709190502.png" alt="" loading="lazy"></figure>
+<p><font size=3>9、完成操作后的使用方法：<a href="http://ngrok.cc/_book/start/ngrok_linux.html" title="ngrok使用方法">ngrok使用方法</a></p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://blog.xuejian.site/post/yi-dong-fu-qia-shi-xian-dan-qia-iphone-shuang-qia-shuang-dai/">
+              <h3 class="post-title">
+                下一篇：移动副卡实现单卡iphone双卡双待
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">记录一下</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
