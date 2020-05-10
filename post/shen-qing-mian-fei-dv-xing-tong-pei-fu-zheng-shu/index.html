@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>sniproxy安装使用 | 随笔</title>
+<title>申请免费DV型通配符证书 | 随笔</title>
 <meta name="description" content="记录一下">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -68,9 +68,9 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">sniproxy安装使用</h2>
+          <h2 class="post-title">申请免费DV型通配符证书</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-06-18</span>
+            <span><i class="icon-calendar-outline"></i> 2019-09-29</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
@@ -84,54 +84,43 @@
             
           </div>
           <div class="post-content">
-            <p><font size=3>1、购买Ubuntu服务器，要求Ubuntu 16.04及以上，待服务器开启后，执行以下命令关闭服务器防火墙和临时关闭selinux</p>
-<pre><code class="language-shell">ufw disable
-setenforce 0
+            <p><strong><font size=4>一、新申请HTTPS证书</strong></p>
+<p><font size=3>1、使用以下命令下载Certbot客户端并授予其可执行权限：</p>
+<pre><code class="language-shell">wget https://dl.eff.org/certbot-auto
+chmod a+x certbot-auto
 </code></pre>
-<p><font size=3>2、执行以下操作，彻底关闭selinux，防止重启后selinux再次启动</p>
-<pre><code class="language-shell">修改/etc/selinux/config 文件
-将SELINUX=enforcing改为SELINUX=disabled
+<p><font size=3>2、输入以下命令，其中，comfun.org请替换为需要申请证书的域名，dns-01表示根据后续给出的TXT记录增加一条解析：</p>
+<pre><code class="language-shell">./certbot-auto certonly -d &quot;*.comfun.org&quot; --manual --preferred-challenges dns-01 --server https://acme-v02.api.letsencrypt.org/directory
 </code></pre>
-<p><font size=3>3、安装依赖</p>
-<pre><code class="language-shell">sudo apt-get install autotools-dev cdbs debhelper dh-autoreconf dpkg-dev gettext libev-dev libpcre3-dev libudns-dev pkg-config fakeroot devscripts
-</code></pre>
-<p><font size=3>4、安装git软件</p>
-<pre><code class="language-shell">sudo apt-get install git
-</code></pre>
-<p><font size=3>5、从github上获取sniproxy</p>
-<pre><code class="language-shell">git clone https://github.com/dlundquist/sniproxy.git
-</code></pre>
-<p><font size=3>6、先进入sniproxy，然后执行第二步</p>
-<pre><code class="language-shell">cd sniproxy
-./autogen.sh &amp;&amp; ./configure &amp;&amp; make check &amp;&amp; sudo make install
-</code></pre>
-<p><font size=3>备份/etc/sniproxy.conf，然后vi /etc/sniproxy.conf，输入以下内容</p>
-<pre><code class="language-shell">user nobody
-resolver {
-mode ipv4_only}  //如果服务器只有ipv4地址一定要这个选项，不然会概率性SSL错误或503
-listen 80 {
-proto http
-table http_hosts
-}
-table http_hosts {
-.* *:80
-}
-listen 0.0.0.0:443 {
-proto tls
-table https_hosts
-}
-table https_hosts {
-.* *:443
-}
-</code></pre>
-<p><font size=3>6、用以下命令启动sniproxy</p>
-<pre><code class="language-shell">sniproxy -c /etc/sniproxy.conf
+<p><font size=3>3、在跳出如下说明后，填入自己的邮箱：</p>
+<figure data-type="image" tabindex="1"><img src="https://s3.xuejian.site/2019/09/20190929165938.png" alt="" loading="lazy"></figure>
+<p><font size=3>4、这步需要填“A”同意才能进行下一步操作</p>
+<figure data-type="image" tabindex="2"><img src="https://s3.xuejian.site/2019/09/20190929170143.png" alt="" loading="lazy"></figure>
+<p><font size=3>5、这一步需要填“Y”同意分享邮箱地址才能进行下一步操作：</p>
+<figure data-type="image" tabindex="3"><img src="https://s3.xuejian.site/2019/09/20190929170346.png" alt="" loading="lazy"></figure>
+<p><font size=3>6、填“Y”同意后进行下一步操作：</p>
+<figure data-type="image" tabindex="4"><img src="https://s3.xuejian.site/2019/09/20190929170514.png" alt="" loading="lazy"></figure>
+<p><font size=3>7、将给出的记录填入域名解析中，类型为TXT</p>
+<figure data-type="image" tabindex="5"><img src="https://s3.xuejian.site/2019/09/342XC8AMREZE6MINI7%7ELG6C.png" alt="" loading="lazy"></figure>
+<p><font size=3>域名解析如图所示，填写完成后过几分钟待解析生效再执行下一步操作，完成后会提示证书位置：</p>
+<figure data-type="image" tabindex="6"><img src="https://s3.xuejian.site/2019/09/20190929170948.png" alt="" loading="lazy"></figure>
+<p><strong><font size=4>二、证书到期更新</strong></p>
+<p><font size=3>1、直接在申请证书的服务器上使用以下命令更新：</p>
+<pre><code class="language-shell">certbot-auto renew
 </code></pre>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://blog.xuejian.site/post/wo-zou-guo-de-hang-zhou-jing-qu-er/">
+              <h3 class="post-title">
+                下一篇：我走过的杭州景区（二）
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       
