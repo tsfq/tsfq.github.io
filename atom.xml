@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xuejian.site</id>
     <title>随笔</title>
-    <updated>2020-05-10T05:02:35.275Z</updated>
+    <updated>2020-05-12T15:49:12.886Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xuejian.site"/>
     <link rel="self" href="https://blog.xuejian.site/atom.xml"/>
@@ -10,6 +10,30 @@
     <logo>https://blog.xuejian.site/images/avatar.png</logo>
     <icon>https://blog.xuejian.site/favicon.ico</icon>
     <rights>All rights reserved 2020, 随笔</rights>
+    <entry>
+        <title type="html"><![CDATA[记录一次阿里云监控问题]]></title>
+        <id>https://blog.xuejian.site/post/ji-lu-yi-ci-a-li-yun-jian-kong-wen-ti/</id>
+        <link href="https://blog.xuejian.site/post/ji-lu-yi-ci-a-li-yun-jian-kong-wen-ti/">
+        </link>
+        <updated>2020-04-06T15:46:33.000Z</updated>
+        <content type="html"><![CDATA[<p><font size=3>使用背景：为了统一监控，在自建机房使用阿里云监控来监控非ECS。</p>
+<p><font size=3>问题：1、有三台虚拟机安装阿里云监控后，三台都是在阿里云监控前台忽隐忽现，同时阿里云监控前台无停止等情况；2、三台服务器不能同时存在在阿里云监控前台。</p>
+<p><font size=3>原因：经过日志查找发现是因为克隆的问题，造成三台获取到instanceId相同的情况，引起之前出现的问题。</p>
+<p><strong><font size=4>处理方法</strong></p>
+<p><font size=3>1、使用以下命令卸载原有的阿里云监控：</p>
+<pre><code class="language-shell">cd /usr/local/cloudmonitor
+./cloudmonitorCtl.sh stop   //停止阿里云监控
+./cloudmonitorCtl.sh uninstall  //卸载阿里云监控
+cd ..
+rm -rf cloudmonitor
+rm -rf /tmp/cloudmonitor.tar.gz
+rm -rf /etc/cloudmonitor
+rm -rf /etc/systemd/system/cloudmonitor.servic
+</code></pre>
+<p><font size=3>2、按图示顺序重新安装阿里云监控</p>
+<figure data-type="image" tabindex="1"><img src="https://s3.xuejian.site/2020/05/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_15892982948073.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2019-四季]]></title>
         <id>https://blog.xuejian.site/post/2019-si-ji/</id>

@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>移动副卡实现单卡iphone双卡双待 | 随笔</title>
+<title>记录一次阿里云监控问题 | 随笔</title>
 <meta name="description" content="记录一下">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -68,12 +68,12 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20200509180551.png')">
+            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/企业微信截图_15892985244716.png')">
             </div>
           
-          <h2 class="post-title">移动副卡实现单卡iphone双卡双待</h2>
+          <h2 class="post-title">记录一次阿里云监控问题</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-06-19</span>
+            <span><i class="icon-calendar-outline"></i> 2020-04-06</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
@@ -87,27 +87,31 @@
             
           </div>
           <div class="post-content">
-            <p><font size=3>国行新出的iPhone XR和iPhone XS MAX的双卡功能的确让众多单卡iPhone用户羡慕，毕竟在中国，由于各种原因，很多人都有两张或以上的号卡。其实，如果其中一张为移动卡，则可以借助中国移动集团下各专业公司的APP，间接实现单卡iPhone的双卡双待，或者是国行iPhone XR和iPhone XS MAX的三卡三待。</p>
-<p><font size=4>一、app store下载相关app及准备对应的微信小程序</p>
-<p><font size=3>1、无忧行。无忧行是中国移动为出境游用户推出的出境游通讯服务门户APP，这里我们主要利用其可以免费转接移动卡的电话和短信。该软件如果通过蒲公英下载企业版，可以提供电话界面直接接听的功能，无需像微信一样弹出对话框后点入接听，企业版二维码如下，或者点击链接：<a href="http://www.pgyer.com/K5qj" title="无忧行企业版">无忧行企业版</a>。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.pgyer.com/app/qrcode/K5qj" alt="" loading="lazy"></figure>
-<p><font size=3>注：如果下载的是无忧行的企业版，需要按以下路径确认企业证书：设置-通用-设备管理-企业级应用，进入后点击信任该证书。</p>
-<p><font size=3>2、和飞信。由于无忧行在境内无法直接回复短信和电话，因此短信可以通过和飞信回复。同时，和飞信每月赠送100分钟通话，可以解决一部分电话需求；</p>
-<p><font size=3>3、密友圈。密友圈为和飞信的子品牌，其优势是可以设置10个中国移动的号码为不限时长拨打号码，同时赠送100分钟通话，解决一部分电话需求；</p>
-<p><font size=3>4、微信小程序“聊会儿”。该小程序为中移互联网公司推出，需要每天签到获取通话分钟数，差不多每个月有300至400分钟；</p>
-<p><font size=3>5、（可选）微信小程序“机伶”。该小程序为浙江移动推出，因此仅适用于浙江移动。该小程序提供运营商端的骚扰拦截功能，防止托管在无忧行的移动号码骚然电话或短信过多。</p>
-<p><font size=4>二、无忧行设置方法。</p>
-<p><font size=3>双卡双待是否可以实现，核心在无忧行的设置，具体设置方法如下图：</p>
-<figure data-type="image" tabindex="2"><img src="https://wz-1255445901.file.myqcloud.com/picture/1902/67e988755a50182e.jpg" alt="" loading="lazy"></figure>
+            <p><font size=3>使用背景：为了统一监控，在自建机房使用阿里云监控来监控非ECS。</p>
+<p><font size=3>问题：1、有三台虚拟机安装阿里云监控后，三台都是在阿里云监控前台忽隐忽现，同时阿里云监控前台无停止等情况；2、三台服务器不能同时存在在阿里云监控前台。</p>
+<p><font size=3>原因：经过日志查找发现是因为克隆的问题，造成三台获取到instanceId相同的情况，引起之前出现的问题。</p>
+<p><strong><font size=4>处理方法</strong></p>
+<p><font size=3>1、使用以下命令卸载原有的阿里云监控：</p>
+<pre><code class="language-shell">cd /usr/local/cloudmonitor
+./cloudmonitorCtl.sh stop   //停止阿里云监控
+./cloudmonitorCtl.sh uninstall  //卸载阿里云监控
+cd ..
+rm -rf cloudmonitor
+rm -rf /tmp/cloudmonitor.tar.gz
+rm -rf /etc/cloudmonitor
+rm -rf /etc/systemd/system/cloudmonitor.servic
+</code></pre>
+<p><font size=3>2、按图示顺序重新安装阿里云监控</p>
+<figure data-type="image" tabindex="1"><img src="https://s3.xuejian.site/2020/05/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_15892982948073.png" alt="" loading="lazy"></figure>
 
           </div>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://blog.xuejian.site/post/zi-jian-di-cheng-ben-da-liu-liang-tu-chuang/">
+            <a class="purple-link" href="https://blog.xuejian.site/post/2019-si-ji/">
               <h3 class="post-title">
-                下一篇：自建低成本大流量图床
+                下一篇：2019-四季
               </h3>
             </a>
           </div>
