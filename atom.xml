@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xuejian.site</id>
     <title>随笔</title>
-    <updated>2020-05-13T16:51:04.836Z</updated>
+    <updated>2020-05-13T16:58:30.583Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xuejian.site"/>
     <link rel="self" href="https://blog.xuejian.site/atom.xml"/>
@@ -10,6 +10,38 @@
     <logo>https://blog.xuejian.site/images/avatar.png</logo>
     <icon>https://blog.xuejian.site/favicon.ico</icon>
     <rights>All rights reserved 2020, 随笔</rights>
+    <entry>
+        <title type="html"><![CDATA[DNS服务器部署]]></title>
+        <id>https://blog.xuejian.site/post/dns-fu-wu-qi-bu-shu/</id>
+        <link href="https://blog.xuejian.site/post/dns-fu-wu-qi-bu-shu/">
+        </link>
+        <updated>2020-04-13T16:57:11.000Z</updated>
+        <content type="html"><![CDATA[<p><strong><font size=4>一、安装配置dnsmasq</strong></p>
+<p><font size=3>1、yum安装dnsmasq</p>
+<pre><code class="language-shell">yum -y install dnsmasq
+</code></pre>
+<p><font size=3>2、配置文件位于/etc/dnsmasq.conf，需要修改以下几处地址：</p>
+<pre><code class="language-shell">resolv-file=/etc/resolv.conf  //这个表示上游DNS从centos配置的DNS里面取
+listen-address=192.168.44.208 //这里填IP地址，如果有多个IP的话可以直接填0.0.0.0
+# IGNORE_RESOLVCONF=yes  //这个配置必须注释掉，否则会忽略本地的DNS
+</code></pre>
+<p><font size=3>3、使用以下命令启动dnsmasq：</p>
+<pre><code class="language-shell">dnsmasq
+</code></pre>
+<p><strong><font size=4>二、配置内网DNS生效</strong></p>
+<p><font size=3>1、配置单个地址的内网dns：</p>
+<pre><code class="language-shell">address=/test.xxx.com/192.168.101.3
+</code></pre>
+<p><font size=3>2、配置某个域名全部转发到一个固定的DNS服务器：</p>
+<pre><code class="language-shell">server=/2345.com/8.8.8.8
+//这个表示，2345.com下的所有域名都被转发到8.8.8.8
+</code></pre>
+<p><font size=3>3、设置某个域名都解析到一个地址的泛解析：</p>
+<pre><code class="language-shell">address=/baidu.com/1.1.1.1
+</code></pre>
+<p><font size=3>4、完成后重启dnsmasq即可生效。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[记录一次阿里云监控问题]]></title>
         <id>https://blog.xuejian.site/post/ji-lu-yi-ci-a-li-yun-jian-kong-wen-ti/</id>

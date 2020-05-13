@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>sniproxy安装使用 | 随笔</title>
+<title>DNS服务器部署 | 随笔</title>
 <meta name="description" content="记录一下">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -68,12 +68,12 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/20190619114249.png')">
+            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20200514005737.png')">
             </div>
           
-          <h2 class="post-title">sniproxy安装使用</h2>
+          <h2 class="post-title">DNS服务器部署</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-06-18</span>
+            <span><i class="icon-calendar-outline"></i> 2020-04-14</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
@@ -87,58 +87,39 @@
             
           </div>
           <div class="post-content">
-            <p><font size=3>1、购买Ubuntu服务器，要求Ubuntu 16.04及以上，待服务器开启后，执行以下命令关闭服务器防火墙和临时关闭selinux</p>
-<pre><code class="language-shell">ufw disable
-setenforce 0
+            <p><strong><font size=4>一、安装配置dnsmasq</strong></p>
+<p><font size=3>1、yum安装dnsmasq</p>
+<pre><code class="language-shell">yum -y install dnsmasq
 </code></pre>
-<p><font size=3>2、执行以下操作，彻底关闭selinux，防止重启后selinux再次启动</p>
-<pre><code class="language-shell">修改/etc/selinux/config 文件
-将SELINUX=enforcing改为SELINUX=disabled
+<p><font size=3>2、配置文件位于/etc/dnsmasq.conf，需要修改以下几处地址：</p>
+<pre><code class="language-shell">resolv-file=/etc/resolv.conf  //这个表示上游DNS从centos配置的DNS里面取
+listen-address=192.168.44.208 //这里填IP地址，如果有多个IP的话可以直接填0.0.0.0
+# IGNORE_RESOLVCONF=yes  //这个配置必须注释掉，否则会忽略本地的DNS
 </code></pre>
-<p><font size=3>3、安装依赖</p>
-<pre><code class="language-shell">sudo apt-get install autotools-dev cdbs debhelper dh-autoreconf dpkg-dev gettext libev-dev libpcre3-dev libudns-dev pkg-config fakeroot devscripts
+<p><font size=3>3、使用以下命令启动dnsmasq：</p>
+<pre><code class="language-shell">dnsmasq
 </code></pre>
-<p><font size=3>4、安装git软件</p>
-<pre><code class="language-shell">sudo apt-get install git
+<p><strong><font size=4>二、配置内网DNS生效</strong></p>
+<p><font size=3>1、配置单个地址的内网dns：</p>
+<pre><code class="language-shell">address=/test.xxx.com/192.168.101.3
 </code></pre>
-<p><font size=3>5、从github上获取sniproxy</p>
-<pre><code class="language-shell">git clone https://github.com/dlundquist/sniproxy.git
+<p><font size=3>2、配置某个域名全部转发到一个固定的DNS服务器：</p>
+<pre><code class="language-shell">server=/2345.com/8.8.8.8
+//这个表示，2345.com下的所有域名都被转发到8.8.8.8
 </code></pre>
-<p><font size=3>6、先进入sniproxy，然后执行第二步</p>
-<pre><code class="language-shell">cd sniproxy
-./autogen.sh &amp;&amp; ./configure &amp;&amp; make check &amp;&amp; sudo make install
+<p><font size=3>3、设置某个域名都解析到一个地址的泛解析：</p>
+<pre><code class="language-shell">address=/baidu.com/1.1.1.1
 </code></pre>
-<p><font size=3>备份/etc/sniproxy.conf，然后vi /etc/sniproxy.conf，输入以下内容</p>
-<pre><code class="language-shell">user nobody
-resolver {
-mode ipv4_only}  //如果服务器只有ipv4地址一定要这个选项，不然会概率性SSL错误或503
-listen 80 {
-proto http
-table http_hosts
-}
-table http_hosts {
-.* *:80
-}
-listen 0.0.0.0:443 {
-proto tls
-table https_hosts
-}
-table https_hosts {
-.* *:443
-}
-</code></pre>
-<p><font size=3>6、用以下命令启动sniproxy</p>
-<pre><code class="language-shell">sniproxy -c /etc/sniproxy.conf
-</code></pre>
+<p><font size=3>4、完成后重启dnsmasq即可生效。</p>
 
           </div>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://blog.xuejian.site/post/da-jian-jian-yi-de-chun-ipv6-huan-jing/">
+            <a class="purple-link" href="https://blog.xuejian.site/post/ji-lu-yi-ci-a-li-yun-jian-kong-wen-ti/">
               <h3 class="post-title">
-                下一篇：搭建简易的纯ipv6环境
+                下一篇：记录一次阿里云监控问题
               </h3>
             </a>
           </div>
