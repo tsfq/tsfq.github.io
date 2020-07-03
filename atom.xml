@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xuejian.site</id>
     <title>随笔</title>
-    <updated>2020-07-03T03:22:46.817Z</updated>
+    <updated>2020-07-03T03:25:07.969Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xuejian.site"/>
     <link rel="self" href="https://blog.xuejian.site/atom.xml"/>
@@ -1429,8 +1429,8 @@ table https_hosts {
         <link href="https://blog.xuejian.site/post/kuai-men-ji-lu-xia-de-ri-ben-guan-xi-xing/">
         </link>
         <updated>2018-06-23T03:20:48.000Z</updated>
-        <content type="html"><![CDATA[<p>######短短几天的日本关西行，用快门记录下旅途的所见所闻。<br>
-** 一、路边留影**</p>
+        <content type="html"><![CDATA[<p>短短几天的日本关西行，用快门记录下旅途的所见所闻。<br>
+一、路边留影</p>
 <ul>
 <li>从静冈机场出来，正式进入霓虹国，对机场大门的留影</li>
 </ul>
@@ -1463,7 +1463,7 @@ table https_hosts {
 <li>你没看错，这个是关西机场的轨道摆渡车</li>
 </ul>
 <figure data-type="image" tabindex="8"><img src="https://wz-1255445901.file.myqcloud.com/picture/1809/d7488dceeb2d2d5f.jpg" alt="" loading="lazy"></figure>
-<p>** 二、吃住留影（来霓虹国，怎么能不吃吃吃，并体会日本特色住宿）**</p>
+<p>二、吃住留影（来霓虹国，怎么能不吃吃吃，并体会日本特色住宿）</p>
 <ul>
 <li>正宗榻榻米了解一下</li>
 </ul>
@@ -1600,7 +1600,7 @@ table https_hosts {
 <figure data-type="image" tabindex="44"><img src="https://wz-1255445901.file.myqcloud.com/picture/1809/39c05454a084248e.jpg" alt="" loading="lazy"></figure>
 </li>
 </ul>
-<p>** 三 、合照**</p>
+<p>三 、合照</p>
 <ul>
 <li>薯条三兄弟路遇小鹿一枚</li>
 </ul>
