@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>使用frp部署仅限内网访问管理系统和跳板机 | 随笔</title>
+<meta name="description" content="记录一下">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1604048416532">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://blog.xuejian.site/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://blog.xuejian.site">
+        <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1604048416532" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://blog.xuejian.site">
+        <h1 class="site-title">随笔</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20200731100027.png')">
+            </div>
+          
+          <h2 class="post-title">使用frp部署仅限内网访问管理系统和跳板机</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-07-31</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
+                    技术
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p><font size=3>背景：在没有公网IP或无固定公网IP的情况下，由于出口IP不固定，难以做到以IP来限制仅公司网络访问管理后台，从而增加了管理后台被非法访问的可能性。但由于固定公网IP价格较高，单纯为此进行更换成本过高。因此，在不改变目前公网的情况下，使用frp完成仅限公司内网访问管理后台的限制，可以在不太增加成本的情况下完成相关操作。</p>
+<hr>
+<p><strong><font size=4>一、本地部署frpc（注：如果有非固定的公网IP的话直接执行第二部分）</strong></p>
+<p><font size=3> 1、在内网访问地址所在的服务器上（推荐使用树莓派等ARM设备）部署frpc，将本地准备使用的frps端口反代到有公网IP的地址，配置如下：</p>
+<pre><code class="language-shell">[common]
+server_addr = 1.1.1.1 //云服务器公网IP
+server_port = 8000
+token = 123456      //token按公司要求设置
+
+[frptcp]
+type = tcp
+local_ip = 127.0.0.1
+local_port = 55555    //第二步要使用的frps的端口
+remote_port = 55555   //此端口只允许公网IP所在的服务器本机访问
+use_encryption = true
+use_compression = true
+</code></pre>
+<p><font size=3>2、启动frpc</p>
+<pre><code class="language-shell">nohup ./frpc -c ./frpc.ini &gt;/dev/null 2&gt;&amp;1 &amp;     //Linux
+
+frpc.exe -c frpc.ini    //Windows 
+</code></pre>
+<p><strong><font size=4>二、本地部署frps</strong></p>
+<p><font size=3>1、在内网访问地址所在的服务器上部署frps，如果是有不固定公网IP的，请将需要暴露的端口映射到等一下需要设置的bind_port端口上，vhost_http_port和vhost_https_port根据实际需求配置，我本次示例直接使用80和443端口：</p>
+<pre><code class="language-shell">[common]
+bind_port = 55555
+vhost_http_port = 80
+vhost_https_port = 443
+dashboard_port = 55556  //frps后台查看的端口
+# dashboard 用户名密码可选，默认都为 admin,根据公司要求更改
+dashboard_user = admin
+dashboard_pwd = admin
+token = 123456
+</code></pre>
+<p><font size=3>2、启动frps</p>
+<pre><code class="language-shell">nohup ./frps -c ./frps.ini &gt;/dev/null 2&gt;&amp;1 &amp;     //Linux
+
+frps.exe -c frps.ini    //Windows 
+</code></pre>
+<p><strong><font size=4>三、将云上的管理系统和跳板机端口代理回公司</strong></p>
+<p><font size=3>1、以阿里云为例，在安全组中，将对应的端口设置为仅内网访问，如图所示，将90端口设置为仅VPC内网访问（注：IP端由实际情况决定，我的VPC内网是10.99.0.0/24）</p>
+<figure data-type="image" tabindex="1"><img src="https://s3.xuejian.site/2020/05/20200731093618.png" alt="" loading="lazy"></figure>
+<p><font size=3>2、将管理系统和跳板机端口代理回公司</p>
+<pre><code class="language-shell">[common]
+server_addr = 127.0.0.1 //直接通过刚才过来的端口回去
+server_port = 55555
+token = 123456      //token按公司要求设置
+
+//跳板机端口
+[jumpserver]
+type = tcp
+local_ip = 10.99.0.250 //填写跳板机内网IP
+local_port = 2222    //跳板机内网端口，按要求设置为仅VPC内网访问
+remote_port = 2222   
+use_encryption = true
+use_compression = true
+
+//管理系统代理回公司
+[admin]
+type = http
+local_ip = 10.99.0.251
+local_port = 80
+custom_domains = admin.xxx.xxx
+</code></pre>
+<p><strong><font size=4>四、部署OPENVPN</strong></p>
+<p><font size=3>部署openvpn的目的是为了在非公司环境下可以连回公司登陆管理系统和跳板机，如果没有这个需求可以不进行部署。</p>
+<p><font size=3>1、下载一键安装脚本，记录下安装过程中设置的端口以及使用的是TCP还是UDP，下载链接：<a href="https://xjdownload.oss-cn-hangzhou.aliyuncs.com/openvpn-install.sh" title="openvpn一键安装脚本下载">openvpn一键安装脚本下载</a>；</p>
+<p><font size=3>2、进入/etc/openvpn，找到server.conf文件，使用vim命令进行更改；</p>
+<p><font size=3>3、注释掉全量代理的push &quot;redirect-gateway def1 bypass-dhcp&quot;，增加需要代理的IP段和所需要使用的DNS的IP，如示例中所使用的公司内网IP段为192.168.0.0/24，DNS服务器使用阿里DNS 223.5.5.5：</p>
+<pre><code class="language-shell">push &quot;route 192.168.0.0 255.255.255.0&quot;
+push &quot;route 223.5.5.5 255.255.255.255&quot;
+push &quot;dhcp-option DNS 223.5.5.5&quot;
+#push &quot;redirect-gateway def1 bypass-dhcp&quot;
+</code></pre>
+<p><font size=3>4、增加一条日志设置，以保证所有登陆记录都有记录：</p>
+<pre><code class="language-shell">log /var/log/openvpn.log
+</code></pre>
+<p><font size=3>5、完成上述操作后，重启openvpn服务，然后就可以使用openvpn-install.sh添加用户，重启命令如下：</p>
+<pre><code class="language-shell">nohup /usr/sbin/openvpn --cd /etc/openvpn/ --daemon --config /etc/openvpn/server.conf &amp;
+</code></pre>
+<p><strong><font size=4>五、设置openvpn的frpc</strong></p>
+<p><font size=3>备注：如果有非固定的公网IP，在做好DDNS的情况下，进行端口转发也可以在不执行本步操作的情况下达到相应效果，但如果有BGP的服务器，推荐使用frpc的方式接入。</p>
+<p><font size=3>frp部分比较简单，只需要根据各自的frp的实际情况来配置即可，需要注意的是，为了节省流量以及达到更好的网络效果，需要使用示例中最后两个设置来开启加密和压缩；需要注意的是，本文采用TCP方式搭建，如果使用的是UDP，需要将type改为UDP：</p>
+<pre><code class="language-shell">[gsvpn]
+type = tcp
+local_ip = 127.0.0.1
+local_port = 1194
+remote_port = 60000
+use_encryption = true
+use_compression = true
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://blog.xuejian.site/post/dns-fu-wu-qi-bu-shu/">
+              <h3 class="post-title">
+                下一篇：DNS服务器部署
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">记录一下</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+        <a href="http://weibo.com/1682707331/profile" target="_blank">
+          <i class="fab fa-weibo"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

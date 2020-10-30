@@ -1,11 +1,10 @@
 
-<!DOCTYPE html>
 <html>
   <head>
     
 <meta charset="utf-8" >
 
-<title>DNS服务器部署 | 随笔</title>
+<title>随笔</title>
 <meta name="description" content="记录一下">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -66,67 +65,49 @@
 
 
       <div class="content-container">
-        <div class="post-detail">
-          
-            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20200514010513.png')">
-            </div>
-          
-          <h2 class="post-title">DNS服务器部署</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2020-04-14</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                    技术
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <p><strong><font size=4>一、安装配置dnsmasq</strong></p>
-<p><font size=3>1、yum安装dnsmasq</p>
-<pre><code class="language-shell">yum -y install dnsmasq
-</code></pre>
-<p><font size=3>2、配置文件位于/etc/dnsmasq.conf，需要修改以下几处地址：</p>
-<pre><code class="language-shell">resolv-file=/etc/resolv.conf  //这个表示上游DNS从centos配置的DNS里面取
-listen-address=192.168.44.208 //这里填IP地址，如果有多个IP的话可以直接填0.0.0.0
-# IGNORE_RESOLVCONF=yes  //这个配置必须注释掉，否则会忽略本地的DNS
-</code></pre>
-<p><font size=3>3、使用以下命令启动dnsmasq：</p>
-<pre><code class="language-shell">dnsmasq
-</code></pre>
-<p><strong><font size=4>二、配置内网DNS生效</strong></p>
-<p><font size=3>1、配置单个地址的内网dns：</p>
-<pre><code class="language-shell">address=/test.xxx.com/192.168.101.3
-</code></pre>
-<p><font size=3>2、配置某个域名全部转发到一个固定的DNS服务器：</p>
-<pre><code class="language-shell">server=/2345.com/8.8.8.8
-//这个表示，2345.com下的所有域名都被转发到8.8.8.8
-</code></pre>
-<p><font size=3>3、设置某个域名都解析到一个地址的泛解析：</p>
-<pre><code class="language-shell">address=/baidu.com/1.1.1.1
-</code></pre>
-<p><font size=3>4、完成后重启dnsmasq即可生效。</p>
-
-          </div>
-        </div>
-
         
-          <div class="next-post">
-            <a class="purple-link" href="https://blog.xuejian.site/post/ji-lu-yi-ci-a-li-yun-jian-kong-wen-ti/">
-              <h3 class="post-title">
-                下一篇：记录一次阿里云监控问题
-              </h3>
-            </a>
-          </div>
-          
+        
+<section class="post-item">
+    <div class="content">
+      <a href="https://blog.xuejian.site/post/kuai-men-ji-lu-xia-de-ri-ben-guan-xi-xing/">
+        <h2 class="post-title">快门记录下的日本关西行</h2>
+      </a>
+      <div class="post-abstract">
+        
       </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2018-06-23</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://blog.xuejian.site/tag/gneutUQCx/">
+                生活
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://blog.xuejian.site/post/kuai-men-ji-lu-xia-de-ri-ben-guan-xi-xing/">
+        <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/picture/1809/1a4aeb9b35f52548.jpg')">
+        </div>
+      </a>
+    
+  </section>
 
-      
+
+<div class="pagination-container">
+  
+    <a href="https://blog.xuejian.site/page/2/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
+  
+  
+</div>
+
+
+      </div>
 
       <div class="site-footer">
   <div class="slogan">记录一下</div>

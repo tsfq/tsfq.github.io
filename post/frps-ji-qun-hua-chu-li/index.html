@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>DNS服务器部署 | 随笔</title>
+<title>frps集群化处理 | 随笔</title>
 <meta name="description" content="记录一下">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -68,12 +68,12 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20200514010513.png')">
+            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20201012205939.png')">
             </div>
           
-          <h2 class="post-title">DNS服务器部署</h2>
+          <h2 class="post-title">frps集群化处理</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2020-04-14</span>
+            <span><i class="icon-calendar-outline"></i> 2020-10-12</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
@@ -87,39 +87,83 @@
             
           </div>
           <div class="post-content">
-            <p><strong><font size=4>一、安装配置dnsmasq</strong></p>
-<p><font size=3>1、yum安装dnsmasq</p>
-<pre><code class="language-shell">yum -y install dnsmasq
+            <p><font size=3>背景：frpc可以做负载均衡，防止单frpc节点宕机影响业务，但frps仍然是单点，为了解决这个问题，本文以阿里云上部署为例，防止frps存在单点情况。</p>
+<p><font size=3>配置：一个公网可访问的阿里云SLB（负载均衡，公网IP为1.1.1.1），2台1核0.5G的ECS（公网IP为2.2.2.2，3.3.3.3），4台线下机房的1核0.5G的虚拟机，业务端口为TCP 30000和35000，业务部署虚拟机两台（IP分别为10.10.10.2和10.10.10.3），云上的安全组和防火墙已经完成开放；</p>
+<p><strong><font size=4>一、线下机房进行frpc配置</strong></p>
+<p><font size=3>1、使用frp的负载均衡和健康检查方法，以以下配置为例：：</p>
+<pre><code class="language-shell">[common]
+# 服务端IP根据ECS的的IP来，分别建立2个并启动
+server_addr = 2.2.2.2
+server_port = 59100
+token = 123456
+
+[yl11]
+type = tcp
+local_ip = 10.10.10.2
+local_port = 35000
+remote_port = 35000
+group = test
+group_key = test
+health_check_type = tcp
+# 建立连接超时时间为 3 秒
+health_check_timeout_s = 3
+# 连续 3 次检查失败，此 proxy 会被摘除
+health_check_max_failed = 3
+# 每隔 10 秒进行一次健康检查
+health_check_interval_s = 10
+
+[yl12]
+type = tcp
+local_ip = 10.10.10.3
+local_port = 35000
+remote_port = 35000
+group = test
+group_key = test
+health_check_type = tcp
+health_check_timeout_s = 3
+health_check_max_failed = 3
+health_check_interval_s = 10
+
+[y13]
+type = tcp
+local_ip = 10.10.10.2
+local_port = 30000
+remote_port = 30000
+group = test1
+group_key = test1
+health_check_type = tcp
+health_check_timeout_s = 3
+health_check_max_failed = 3
+health_check_interval_s = 10
+
+[yl14]
+type = tcp
+local_ip = 10.10.10.3
+local_port = 30000
+remote_port = 30000
+group = test1
+group_key = test1
+health_check_type = tcp
+health_check_timeout_s = 3
+health_check_max_failed = 3
+health_check_interval_s = 10
 </code></pre>
-<p><font size=3>2、配置文件位于/etc/dnsmasq.conf，需要修改以下几处地址：</p>
-<pre><code class="language-shell">resolv-file=/etc/resolv.conf  //这个表示上游DNS从centos配置的DNS里面取
-listen-address=192.168.44.208 //这里填IP地址，如果有多个IP的话可以直接填0.0.0.0
-# IGNORE_RESOLVCONF=yes  //这个配置必须注释掉，否则会忽略本地的DNS
-</code></pre>
-<p><font size=3>3、使用以下命令启动dnsmasq：</p>
-<pre><code class="language-shell">dnsmasq
-</code></pre>
-<p><strong><font size=4>二、配置内网DNS生效</strong></p>
-<p><font size=3>1、配置单个地址的内网dns：</p>
-<pre><code class="language-shell">address=/test.xxx.com/192.168.101.3
-</code></pre>
-<p><font size=3>2、配置某个域名全部转发到一个固定的DNS服务器：</p>
-<pre><code class="language-shell">server=/2345.com/8.8.8.8
-//这个表示，2345.com下的所有域名都被转发到8.8.8.8
-</code></pre>
-<p><font size=3>3、设置某个域名都解析到一个地址的泛解析：</p>
-<pre><code class="language-shell">address=/baidu.com/1.1.1.1
-</code></pre>
-<p><font size=3>4、完成后重启dnsmasq即可生效。</p>
+<p><font size=3>2、以以上配置为基础，分别启动2个frpc连接2台ECS的服务端。</p>
+<p><strong><font size=4>二、阿里云SLB设置</strong></p>
+<p><font size=3>在SLB上，将SLB的TCP 30000和35000分别指向两台ECS的TCP 30000和35000</p>
+<figure data-type="image" tabindex="1"><img src="https://s3.xuejian.site/2020/01/20200104214729.png" alt="" loading="lazy"></figure>
+<p><strong><font size=4>三、对外解析为1.1.1.1</strong></p>
+<p><font size=3>在阿里云解析上将二级域名解析到SLB的公网IP，外界直接调用该地址就可以访问；</p>
+<figure data-type="image" tabindex="2"><img src="https://s3.xuejian.site/2020/05/20201012205346.png" alt="" loading="lazy"></figure>
 
           </div>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://blog.xuejian.site/post/ji-lu-yi-ci-a-li-yun-jian-kong-wen-ti/">
+            <a class="purple-link" href="https://blog.xuejian.site/post/shi-yong-frp-bu-shu-jin-xian-nei-wang-fang-wen-guan-li-xi-tong-he-tiao-ban-ji/">
               <h3 class="post-title">
-                下一篇：记录一次阿里云监控问题
+                下一篇：使用frp部署仅限内网访问管理系统和跳板机
               </h3>
             </a>
           </div>
