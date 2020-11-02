@@ -1,309 +1,46 @@
-
-<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
-
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>技术 | 随笔</title>
-<meta name="description" content="记录一下">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1604048416532">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1604295027519">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://blog.xuejian.site/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="技术 | 随笔 - Atom Feed" href="https://blog.xuejian.site/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-
-
+  <meta name="description" content="记录一下" />
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://blog.xuejian.site">
-        <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1604048416532" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://blog.xuejian.site">
-        <h1 class="site-title">随笔</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.xuejian.site">
+  <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1604295027519" alt="">
+  </a>
+  <h1 class="site-title">
+    随笔
+  </h1>
+  <p class="site-description">
+    记录一下
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
   </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
-
-        <div class="current-tag-container">
-          <h2 class="title">
-            <i class="icon icon-pricetags-outline"></i> 技术
-          </h2> 
-        </div>
-
-        
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/jiu-dian-nao-gai-zao-xia-zai-ji/">
-        <h2 class="post-title">旧电脑改造下载机</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-07-09</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/jiu-dian-nao-gai-zao-xia-zai-ji/">
-        <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/07/20190709192817.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/azure-dui-deng-wang-luo-she-zhi/">
-        <h2 class="post-title">azure对等网络设置</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-06-26</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/azure-dui-deng-wang-luo-she-zhi/">
-        <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/figure04.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/guo-ji-ban-s3-gua-zai-dao-linux-fu-wu-qi/">
-        <h2 class="post-title">国际版s3挂载到Linux服务器</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-06-24</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/guo-ji-ban-s3-gua-zai-dao-linux-fu-wu-qi/">
-        <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/s3-500x256.jpg')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/yi-dong-fu-qia-shi-xian-dan-qia-iphone-shuang-qia-shuang-dai/">
-        <h2 class="post-title">移动副卡实现单卡iphone双卡双待</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-06-19</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/yi-dong-fu-qia-shi-xian-dan-qia-iphone-shuang-qia-shuang-dai/">
-        <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20200509180551.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/zi-jian-di-cheng-ben-da-liu-liang-tu-chuang/">
-        <h2 class="post-title">自建低成本大流量图床</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-06-19</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/zi-jian-di-cheng-ben-da-liu-liang-tu-chuang/">
-        <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/05/20190531172730.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/sniproxy-an-zhuang-shi-yong/">
-        <h2 class="post-title">sniproxy安装使用</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-06-18</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/sniproxy-an-zhuang-shi-yong/">
-        <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/20190619114249.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/da-jian-jian-yi-de-chun-ipv6-huan-jing/">
-        <h2 class="post-title">搭建简易的纯ipv6环境</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-06-18</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/da-jian-jian-yi-de-chun-ipv6-huan-jing/">
-        <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/20190613101951.png')">
-        </div>
-      </a>
-    
-  </section>
-
-
-<div class="pagination-container">
-  
-    <a href="https://blog.xuejian.site/tag/0fquGaUY6" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
-  
-  
-</div>
-
-
-      </div>
-
-      <div class="site-footer">
-  <div class="slogan">记录一下</div>
   <div class="social-container">
     
       
@@ -311,36 +48,220 @@
       
     
       
-        <a href="http://weibo.com/1682707331/profile" target="_blank">
-          <i class="fab fa-weibo"></i>
-        </a>
-      
     
       
     
       
     
   </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">RSS</a>
 </div>
 
+        <div class="current-tag-container">
+            <h2 class="title">
+                标签：# 技术
+            </h2> 
+        </div>
+        <div class="post-container">
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/jiu-dian-nao-gai-zao-xia-zai-ji/">
+        <h2 class="post-title">旧电脑改造下载机</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-07-09
+        </span>
+        <span>
+          7 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/jiu-dian-nao-gai-zao-xia-zai-ji/" class="post-feature-image" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/07/20190709192817.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/azure-dui-deng-wang-luo-she-zhi/">
+        <h2 class="post-title">azure对等网络设置</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-06-26
+        </span>
+        <span>
+          1 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/azure-dui-deng-wang-luo-she-zhi/" class="post-feature-image" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/figure04.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/guo-ji-ban-s3-gua-zai-dao-linux-fu-wu-qi/">
+        <h2 class="post-title">国际版s3挂载到Linux服务器</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-06-24
+        </span>
+        <span>
+          2 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/guo-ji-ban-s3-gua-zai-dao-linux-fu-wu-qi/" class="post-feature-image" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/s3-500x256.jpg')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/yi-dong-fu-qia-shi-xian-dan-qia-iphone-shuang-qia-shuang-dai/">
+        <h2 class="post-title">移动副卡实现单卡iphone双卡双待</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-06-19
+        </span>
+        <span>
+          2 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/yi-dong-fu-qia-shi-xian-dan-qia-iphone-shuang-qia-shuang-dai/" class="post-feature-image" style="background-image: url('https://s3.xuejian.site/2020/05/20200509180551.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/zi-jian-di-cheng-ben-da-liu-liang-tu-chuang/">
+        <h2 class="post-title">自建低成本大流量图床</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-06-19
+        </span>
+        <span>
+          4 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/zi-jian-di-cheng-ben-da-liu-liang-tu-chuang/" class="post-feature-image" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/05/20190531172730.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/sniproxy-an-zhuang-shi-yong/">
+        <h2 class="post-title">sniproxy安装使用</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-06-18
+        </span>
+        <span>
+          2 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/sniproxy-an-zhuang-shi-yong/" class="post-feature-image" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/20190619114249.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/da-jian-jian-yi-de-chun-ipv6-huan-jing/">
+        <h2 class="post-title">搭建简易的纯ipv6环境</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-06-18
+        </span>
+        <span>
+          1 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/da-jian-jian-yi-de-chun-ipv6-huan-jing/" class="post-feature-image" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/06/20190613101951.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+</div>
 
+        <div class="pagination-container">
+  
+    <a href="https://blog.xuejian.site/tag/0fquGaUY6" class="prev-page">上一页</a>
+  
+  
+</div>
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
     </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
-</script>
-
-
-
-
   </body>
 </html>

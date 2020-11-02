@@ -1,402 +1,46 @@
-
-<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
-
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>技术 | 随笔</title>
-<meta name="description" content="记录一下">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1604048416532">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1604295027519">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://blog.xuejian.site/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="技术 | 随笔 - Atom Feed" href="https://blog.xuejian.site/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-
-
+  <meta name="description" content="记录一下" />
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://blog.xuejian.site">
-        <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1604048416532" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://blog.xuejian.site">
-        <h1 class="site-title">随笔</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.xuejian.site">
+  <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1604295027519" alt="">
+  </a>
+  <h1 class="site-title">
+    随笔
+  </h1>
+  <p class="site-description">
+    记录一下
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
   </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
-
-        <div class="current-tag-container">
-          <h2 class="title">
-            <i class="icon icon-pricetags-outline"></i> 技术
-          </h2> 
-        </div>
-
-        
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/frps-ji-qun-hua-chu-li/">
-        <h2 class="post-title">frps集群化处理</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2020-10-12</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/frps-ji-qun-hua-chu-li/">
-        <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20201012205939.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/shi-yong-frp-bu-shu-jin-xian-nei-wang-fang-wen-guan-li-xi-tong-he-tiao-ban-ji/">
-        <h2 class="post-title">使用frp部署仅限内网访问管理系统和跳板机</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2020-07-31</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/shi-yong-frp-bu-shu-jin-xian-nei-wang-fang-wen-guan-li-xi-tong-he-tiao-ban-ji/">
-        <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20200731100027.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/dns-fu-wu-qi-bu-shu/">
-        <h2 class="post-title">DNS服务器部署</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2020-04-14</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/dns-fu-wu-qi-bu-shu/">
-        <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/20200514010513.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/ji-lu-yi-ci-a-li-yun-jian-kong-wen-ti/">
-        <h2 class="post-title">记录一次阿里云监控问题</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2020-04-06</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/ji-lu-yi-ci-a-li-yun-jian-kong-wen-ti/">
-        <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2020/05/企业微信截图_15892985244716.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/li-yong-ke-dao-yun-shi-xian-oss-nei-wang-tu-xing-hua/">
-        <h2 class="post-title">利用可道云实现OSS内网图形化</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-10-28</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/li-yong-ke-dao-yun-shi-xian-oss-nei-wang-tu-xing-hua/">
-        <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2019/10/20191028160835.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/li-yong-oss-jian-li-kua-guo-chuan-bao-zhan/">
-        <h2 class="post-title">利用OSS建立跨国传包站</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-10-03</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/li-yong-oss-jian-li-kua-guo-chuan-bao-zhan/">
-        <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/08/20190814191318.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/shen-qing-mian-fei-dv-xing-tong-pei-fu-zheng-shu/">
-        <h2 class="post-title">申请免费DV型通配符证书</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-09-29</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/shen-qing-mian-fei-dv-xing-tong-pei-fu-zheng-shu/">
-        <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2019/09/20190929203047.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/jia-su-guo-nei-fang-wen-hai-wai-zi-you-zhan-dian-yu-fu-wu/">
-        <h2 class="post-title">加速国内访问海外自有站点与服务</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-09-27</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/jia-su-guo-nei-fang-wen-hai-wai-zi-you-zhan-dian-yu-fu-wu/">
-        <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2019/09/20190927104011.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/frp-shi-ji-ying-yong/">
-        <h2 class="post-title">frp实际应用</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-08-25</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/frp-shi-ji-ying-yong/">
-        <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2019/09/20190911100750.png')">
-        </div>
-      </a>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://blog.xuejian.site/post/nginx-fu-wu-xiao-jie/">
-        <h2 class="post-title">nginx服务小结</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-08-19</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                技术
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://blog.xuejian.site/post/nginx-fu-wu-xiao-jie/">
-        <div class="feature-container" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/09/20190903170358.png')">
-        </div>
-      </a>
-    
-  </section>
-
-
-<div class="pagination-container">
-  
-  
-    <a href="https://blog.xuejian.site/tag/0fquGaUY6/page/2" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
-  
-</div>
-
-
-      </div>
-
-      <div class="site-footer">
-  <div class="slogan">记录一下</div>
   <div class="social-container">
     
       
@@ -404,36 +48,298 @@
       
     
       
-        <a href="http://weibo.com/1682707331/profile" target="_blank">
-          <i class="fab fa-weibo"></i>
-        </a>
-      
     
       
     
       
     
   </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">RSS</a>
 </div>
 
+        <div class="current-tag-container">
+            <h2 class="title">
+                标签：# 技术
+            </h2> 
+        </div>
+        <div class="post-container">
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/frps-ji-qun-hua-chu-li/">
+        <h2 class="post-title">frps集群化处理</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2020-10-12
+        </span>
+        <span>
+          2 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/frps-ji-qun-hua-chu-li/" class="post-feature-image" style="background-image: url('https://s3.xuejian.site/2020/05/20201012205939.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/shi-yong-frp-bu-shu-jin-xian-nei-wang-fang-wen-guan-li-xi-tong-he-tiao-ban-ji/">
+        <h2 class="post-title">使用frp部署仅限内网访问管理系统和跳板机</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2020-07-31
+        </span>
+        <span>
+          5 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/shi-yong-frp-bu-shu-jin-xian-nei-wang-fang-wen-guan-li-xi-tong-he-tiao-ban-ji/" class="post-feature-image" style="background-image: url('https://s3.xuejian.site/2020/05/20200731100027.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/dns-fu-wu-qi-bu-shu/">
+        <h2 class="post-title">DNS服务器部署</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2020-04-14
+        </span>
+        <span>
+          1 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/dns-fu-wu-qi-bu-shu/" class="post-feature-image" style="background-image: url('https://s3.xuejian.site/2020/05/20200514010513.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/ji-lu-yi-ci-a-li-yun-jian-kong-wen-ti/">
+        <h2 class="post-title">记录一次阿里云监控问题</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2020-04-06
+        </span>
+        <span>
+          1 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/ji-lu-yi-ci-a-li-yun-jian-kong-wen-ti/" class="post-feature-image" style="background-image: url('https://s3.xuejian.site/2020/05/企业微信截图_15892985244716.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/li-yong-ke-dao-yun-shi-xian-oss-nei-wang-tu-xing-hua/">
+        <h2 class="post-title">利用可道云实现OSS内网图形化</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-10-28
+        </span>
+        <span>
+          2 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/li-yong-ke-dao-yun-shi-xian-oss-nei-wang-tu-xing-hua/" class="post-feature-image" style="background-image: url('https://s3.xuejian.site/2019/10/20191028160835.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/li-yong-oss-jian-li-kua-guo-chuan-bao-zhan/">
+        <h2 class="post-title">利用OSS建立跨国传包站</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-10-03
+        </span>
+        <span>
+          2 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/li-yong-oss-jian-li-kua-guo-chuan-bao-zhan/" class="post-feature-image" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/08/20190814191318.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/shen-qing-mian-fei-dv-xing-tong-pei-fu-zheng-shu/">
+        <h2 class="post-title">申请免费DV型通配符证书</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-09-29
+        </span>
+        <span>
+          2 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/shen-qing-mian-fei-dv-xing-tong-pei-fu-zheng-shu/" class="post-feature-image" style="background-image: url('https://s3.xuejian.site/2019/09/20190929203047.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/jia-su-guo-nei-fang-wen-hai-wai-zi-you-zhan-dian-yu-fu-wu/">
+        <h2 class="post-title">加速国内访问海外自有站点与服务</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-09-27
+        </span>
+        <span>
+          6 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/jia-su-guo-nei-fang-wen-hai-wai-zi-you-zhan-dian-yu-fu-wu/" class="post-feature-image" style="background-image: url('https://s3.xuejian.site/2019/09/20190927104011.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/frp-shi-ji-ying-yong/">
+        <h2 class="post-title">frp实际应用</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-08-25
+        </span>
+        <span>
+          5 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/frp-shi-ji-ying-yong/" class="post-feature-image" style="background-image: url('https://s3.xuejian.site/2019/09/20190911100750.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <a href="https://blog.xuejian.site/post/nginx-fu-wu-xiao-jie/">
+        <h2 class="post-title">nginx服务小结</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2019-08-19
+        </span>
+        <span>
+          6 min read
+        </span>
+        
+          <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+            # 技术
+          </a>
+        
+      </div>
+      
+        <a href="https://blog.xuejian.site/post/nginx-fu-wu-xiao-jie/" class="post-feature-image" style="background-image: url('https://wz-1255445901.file.myqcloud.com/2019/09/20190903170358.png')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+</div>
 
+        <div class="pagination-container">
+  
+  
+    <a href="https://blog.xuejian.site/tag/0fquGaUY6/page/2" class="next-page">下一页</a>
+  
+</div>
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
     </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
-</script>
-
-
-
-
   </body>
 </html>

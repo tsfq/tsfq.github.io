@@ -1,93 +1,90 @@
-
-<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>frp实际应用 | 随笔</title>
-<meta name="description" content="记录一下">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1604048416532">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1604295027519">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://blog.xuejian.site/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="frp实际应用 | 随笔 - Atom Feed" href="https://blog.xuejian.site/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-
-
+    <meta name="description" content="由于ipv4资源的日益稀缺，目前很多企业用的宽带也是没有公网IP的，但有时候在非公司网络下需要访问公司内部的OA以及内网电脑或服务器，如果公司规定允许可以采用frp的方式进入；
+一、frp服务端部署
+1、准备：（1）一台带公网IP的VPS，..." />
+    <meta name="keywords" content="技术" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://blog.xuejian.site">
-        <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1604048416532" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://blog.xuejian.site">
-        <h1 class="site-title">随笔</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.xuejian.site">
+  <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1604295027519" alt="">
+  </a>
+  <h1 class="site-title">
+    随笔
+  </h1>
+  <p class="site-description">
+    记录一下
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
         <div class="post-detail">
-          
-            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2019/09/20190911100750.png')">
-            </div>
-          
-          <h2 class="post-title">frp实际应用</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-08-25</span>
-            
+          <article class="post">
+            <h2 class="post-title">
+              frp实际应用
+            </h2>
+            <div class="post-info">
               <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
-                    技术
-                    
-                  </a>
-                
+                2019-08-25
               </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
+                  # 技术
+                </a>
+              
+            </div>
             
-          </div>
-          <div class="post-content">
-            <p><font size=3>由于ipv4资源的日益稀缺，目前很多企业用的宽带也是没有公网IP的，但有时候在非公司网络下需要访问公司内部的OA以及内网电脑或服务器，如果公司规定允许可以采用frp的方式进入；</p>
+              <img class="post-feature-image" src="https://s3.xuejian.site/2019/09/20190911100750.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><font size=3>由于ipv4资源的日益稀缺，目前很多企业用的宽带也是没有公网IP的，但有时候在非公司网络下需要访问公司内部的OA以及内网电脑或服务器，如果公司规定允许可以采用frp的方式进入；</p>
 <p><strong><font size=4>一、frp服务端部署</strong></p>
 <p><font size=3>1、准备：（1）一台带公网IP的VPS，系统为CentOS 7，如果仅用于frp建议购买阿里元1核0.5G的香港区ECS，防止因为备案等问题造成困扰，没有阿里云账号可以访问以下链接注册并实名：<a href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=yfbux3xo" title="阿里云注册链接">阿里云注册链接</a> ；（2）域名，如果有可以直接使用，如果没有可以在注册完阿里云后进行购买；（3）内网一台24小时开机的设备，可以是服务器或电脑，也可以是能安装frp客户端的树莓派及路由器；</p>
 <p><font size=3>2、本文以阿里云为例，购买ECS后，按图所示步骤，进入阿里云安全组设置；</p>
@@ -189,61 +186,76 @@ use_compression = true
 <p><font size=3>2、登录后，红框1查看远程访问内网电脑或服务器情况，红框2表示外网访问内网OA等内部web服务的情况。</p>
 <figure data-type="image" tabindex="6"><img src="https://s3.xuejian.site/2019/09/20190911100050.png" alt="" loading="lazy"></figure>
 
-          </div>
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://blog.xuejian.site/post/wo-zou-guo-de-hang-zhou-jing-qu-er/">
+            <div class="next">下一篇</div>
+            <a href="https://blog.xuejian.site/post/wo-zou-guo-de-hang-zhou-jing-qu-er/">
               <h3 class="post-title">
-                下一篇：我走过的杭州景区（二）
+                我走过的杭州景区（二）
               </h3>
             </a>
           </div>
-          
-      </div>
+        
 
-      
+        
 
-      <div class="site-footer">
-  <div class="slogan">记录一下</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-        <a href="http://weibo.com/1682707331/profile" target="_blank">
-          <i class="fab fa-weibo"></i>
-        </a>
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">RSS</a>
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
 </div>
 
-
+      </div>
     </div>
-    <script type="application/javascript">
 
-hljs.initHighlightingOnLoad()
+    <script>
+      hljs.initHighlightingOnLoad()
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
 
-</script>
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
 
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
 
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
 
-
+    </script>
   </body>
 </html>
