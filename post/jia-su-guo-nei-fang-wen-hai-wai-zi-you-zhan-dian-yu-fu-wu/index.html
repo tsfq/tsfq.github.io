@@ -1,99 +1,93 @@
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>加速国内访问海外自有站点与服务 | 随笔</title>
-<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1604472604139">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<meta name="description" content="记录一下">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://daye.baidu404.top:444/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://daye.baidu404.top:444/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.xuejian.site/favicon.ico?v=1604472914639">
+<link rel="stylesheet" href="https://daye.baidu404.top:444/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://blog.xuejian.site/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="加速国内访问海外自有站点与服务 | 随笔 - Atom Feed" href="https://blog.xuejian.site/atom.xml">
-<link rel="stylesheet" href="https://daye.baidu404.top:444/css?family=Droid+Serif:400,700">
 
 
-<script async src="https://daye.baidu404.top:444/gtag/js?id=G-W005SJ34WM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-W005SJ34WM');
-</script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
-    <meta name="description" content="一、利用全站加速没有非标端口的站点
-1、以阿里云为例，打开全站加速界面，选择“添加域名”；
-2、在添加过程中，注意图示的加速区域，如果加速域名为国内已经备案的域名，可以选择任意三种，如果域名为没有备案的域名，只能选择“港澳台及海外”，需要明..." />
-    <meta name="keywords" content="技术" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://blog.xuejian.site">
-  <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1604472604139" alt="">
-  </a>
-  <h1 class="site-title">
-    随笔
-  </h1>
-  <p class="site-description">
-    记录一下
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://blog.xuejian.site">
+        <img class="avatar" src="https://blog.xuejian.site/images/avatar.png?v=1604472914639" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://blog.xuejian.site">
+        <h1 class="site-title">随笔</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
 </div>
 
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
         <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              加速国内访问海外自有站点与服务
-            </h2>
-            <div class="post-info">
-              <span>
-                2019-09-27
-              </span>
-              <span>
-                6 min read
-              </span>
-              
-                <a href="https://blog.xuejian.site/tag/0fquGaUY6/" class="post-tag">
-                  # 技术
-                </a>
-              
+          
+            <div class="feature-container" style="background-image: url('https://s3.xuejian.site/2019/09/20190927104011.png')">
             </div>
+          
+          <h2 class="post-title">加速国内访问海外自有站点与服务</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-09-27</span>
             
-              <img class="post-feature-image" src="https://s3.xuejian.site/2019/09/20190927104011.png" alt="">
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://blog.xuejian.site/tag/0fquGaUY6/">
+                    技术
+                    
+                  </a>
+                
+              </span>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <p><strong><font size=4>一、利用全站加速没有非标端口的站点</strong></p>
+          </div>
+          <div class="post-content">
+            <p><strong><font size=4>一、利用全站加速没有非标端口的站点</strong></p>
 <p><font size=3>1、以阿里云为例，打开全站加速界面，选择“添加域名”；</p>
 <p><font size=3>2、在添加过程中，注意图示的加速区域，如果加速域名为国内已经备案的域名，可以选择任意三种，如果域名为没有备案的域名，只能选择“港澳台及海外”，需要明确的是，各家云服务商的港澳台及海外加速节点，如果大陆地区访问，一般效果不会很好，如果域名没有备案不建议通过这种方式加速；</p>
 <figure data-type="image" tabindex="1"><img src="https://s3.xuejian.site/2019/09/20190927082820.png" alt="" loading="lazy"></figure>
@@ -247,76 +241,61 @@ server s1 1.1.1.1:3456 weight 1 maxconn 10000 check inter 1000s
 <p><font size=3>需要注意的是，如果海外地区有ipv6，则慎重选择阿里云解析，因为阿里云解析NS域名服务器的ipv6地址位于中国四川，递归回国会造成ipv6解析速度严重下降，线路ping结果如下图所示：</p>
 <figure data-type="image" tabindex="7"><img src="https://s3.xuejian.site/2019/09/20190927095731.png" alt="" loading="lazy"></figure>
 
-              </div>
-              <div class="toc-container">
-                
-              </div>
-            </div>
-          </article>
+          </div>
         </div>
 
         
           <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://blog.xuejian.site/post/frp-shi-ji-ying-yong/">
+            <a class="purple-link" href="https://blog.xuejian.site/post/frp-shi-ji-ying-yong/">
               <h3 class="post-title">
-                frp实际应用
+                下一篇：frp实际应用
               </h3>
             </a>
           </div>
-        
+          
+      </div>
 
-        
+      
 
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
+      <div class="site-footer">
+  <div class="slogan">记录一下</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+        <a href="http://weibo.com/1682707331/profile" target="_blank">
+          <i class="fab fa-weibo"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.xuejian.site/atom.xml" target="_blank">RSS</a>
 </div>
 
-      </div>
+
     </div>
+    <script type="application/javascript">
 
-    <script>
-      hljs.initHighlightingOnLoad()
+hljs.initHighlightingOnLoad()
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+</script>
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
 
-    </script>
+
   </body>
 </html>
