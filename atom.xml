@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xuejian.site</id>
     <title>随笔</title>
-    <updated>2020-11-10T01:52:31.994Z</updated>
+    <updated>2020-11-23T07:29:10.420Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xuejian.site"/>
     <link rel="self" href="https://blog.xuejian.site/atom.xml"/>
@@ -10,6 +10,40 @@
     <logo>https://blog.xuejian.site/images/avatar.png</logo>
     <icon>https://blog.xuejian.site/favicon.ico</icon>
     <rights>All rights reserved 2020, 随笔</rights>
+    <entry>
+        <title type="html"><![CDATA[centos7 安装Saltstack]]></title>
+        <id>https://blog.xuejian.site/post/centos7-an-zhuang-saltstack/</id>
+        <link href="https://blog.xuejian.site/post/centos7-an-zhuang-saltstack/">
+        </link>
+        <updated>2020-11-23T07:27:46.000Z</updated>
+        <content type="html"><![CDATA[<p><font size=3>背景：IDC使用的centos7使用minion方式安装，无法直接用yum的方式安装Saltstack。</p>
+<p><font size=3>1、使用以下命令，在系统目录etc/pki/rpm-gpg/中安装公钥（如果显示404，，在本机浏览器访问https://repo.saltstack.com/yum/redhat/7/x86_64/archive 找到最新的时间替换2019.2.7）：</p>
+<pre><code class="language-shell">rpm --import https://repo.saltstack.com/yum/redhat/7/x86_64/archive/2019.2.7/SALTSTACK-GPG-KEY.pub
+</code></pre>
+<p><font size=3>2、进入/etc/yum.repos.d/，vi saltstack.repo，填入以下内容：</p>
+<pre><code class="language-shell">[saltstack-repo]
+name=SaltStack repo for RHEL/CentOS $releasever
+baseurl=https://repo.saltstack.com/yum/redhat/$releasever/$basearch/archive/2019.2.7
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.saltstack.com/yum/redhat/$releasever/$basearch/archive/2019.2.7/SALTSTACK-GPG-KEY.pub
+</code></pre>
+<p><font size=3>3、安装saltstack服务</p>
+<pre><code class="language-shell">yum -y install salt-master    //服务端
+yum -y install salt-minion    //客户端
+</code></pre>
+<p><font size=3>4、启动saltstack服务端（客户端配置后再启动）</p>
+<pre><code class="language-shell">systemctl start salt-master
+</code></pre>
+<p><font size=3>5、使用命令vi /etc/salt/minion打开saltstack客户端配置，更改以下配置（假设服务端IP为1.1.1.1）：</p>
+<pre><code class="language-shell">master: 1.1.1.1
+id: 192.168.1.1 
+</code></pre>
+<p><font size=3>6、启动saltstack客户端服务</p>
+<pre><code class="language-shell">systemctl start salt-minion
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[frps集群化处理]]></title>
         <id>https://blog.xuejian.site/post/frps-ji-qun-hua-chu-li/</id>
@@ -1581,26 +1615,6 @@ table https_hosts {
 <p><font size=3>6、用以下命令启动sniproxy</p>
 <pre><code class="language-shell">sniproxy -c /etc/sniproxy.conf
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[搭建简易的纯ipv6环境]]></title>
-        <id>https://blog.xuejian.site/post/da-jian-jian-yi-de-chun-ipv6-huan-jing/</id>
-        <link href="https://blog.xuejian.site/post/da-jian-jian-yi-de-chun-ipv6-huan-jing/">
-        </link>
-        <updated>2019-06-18T04:31:40.000Z</updated>
-        <content type="html"><![CDATA[<p><font size=3>1、android手机需要支持4G，打开4G后，确认打开<a href="https://ipv6-test.com" title="http://test-ipv6.com">https://ipv6-test.com</a>,确认是否有ipv6，如果没有，请更换手机或手机卡（该站点位于国外，如果难以打开，先在代理环境下加载一次，然后再切回4G转换的wifi下打开），如图表示有ipv6，可以进行下一步（建议android手机上使用联通卡或移动卡，并使用4G套餐）：</p>
-<figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613100942.png" alt="" loading="lazy"></figure>
-<p><font size=3>2、iphone或ipad请确认系统版本在ios11及以上，连接wifi，点击wifi旁边红框标注的叹号：</p>
-<figure data-type="image" tabindex="2"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190612200310.png" alt="" loading="lazy"></figure>
-<p><font size=3>3、点击进入后，点击红框标注的“配置IP”，选择BootP，完成后如下图所示：</p>
-<figure data-type="image" tabindex="3"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613100856.png" alt="" loading="lazy"></figure>
-<p><font size=3>4、在该界面拉到最后，选择红框标注的配置DNS：</p>
-<figure data-type="image" tabindex="4"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613101410.png" alt="" loading="lazy"></figure>
-<p><font size=3>5、进入后，按以下步骤进行，如果原有DNS，请删除后进行第二步操作，第二步填入DSN地址：240C::6666</p>
-<figure data-type="image" tabindex="5"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613101744.png" alt="" loading="lazy"></figure>
-<p><font size=3>6、再次打开ipv6验证站点<a href="https://ipv6-test.com" title="http://test-ipv6.com">https://ipv6-test.com</a>，如果显示如下所示的说明已经处于纯ipv6，可以进行测试</p>
-<figure data-type="image" tabindex="6"><img src="https://wz-1255445901.file.myqcloud.com/2019/06/20190613101951.png" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>
