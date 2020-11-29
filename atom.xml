@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xuejian.site</id>
     <title>随笔</title>
-    <updated>2020-11-26T01:31:42.174Z</updated>
+    <updated>2020-11-29T13:01:18.364Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xuejian.site"/>
     <link rel="self" href="https://blog.xuejian.site/atom.xml"/>
@@ -10,6 +10,43 @@
     <logo>https://blog.xuejian.site/images/avatar.png</logo>
     <icon>https://blog.xuejian.site/favicon.ico</icon>
     <rights>All rights reserved 2020, 随笔</rights>
+    <entry>
+        <title type="html"><![CDATA[华强北版二代AirPods分享]]></title>
+        <id>https://blog.xuejian.site/post/hua-qiang-bei-ban-er-dai-airpods-fen-xiang/</id>
+        <link href="https://blog.xuejian.site/post/hua-qiang-bei-ban-er-dai-airpods-fen-xiang/">
+        </link>
+        <updated>2020-11-29T13:00:26.000Z</updated>
+        <content type="html"><![CDATA[<p><font size=3>背景：在网上看蓝牙耳机芯片时，看到华强北在使用台湾洛达芯片制造华强北版AirPods，抱着试试看的态度，直接从深圳购买了，今天到手，发现比较好用，哈哈。</p>
+<p><strong><font size=4>开箱</strong></p>
+<p><font size=3>1、拆开快递，本体包装盒就是一个仿照AirPods的包装盒；</p>
+<figure data-type="image" tabindex="1"><img src="https://s3.xuejian.site/2020/11/20201129202846.png" alt="" loading="lazy"></figure>
+<p><font size=3>2、侧边的说明，居然也和AirPods一样，而且看说明居然支持无线充电，待会儿测试一下；</p>
+<figure data-type="image" tabindex="2"><img src="https://s3.xuejian.site/2020/11/20201129203131.png" alt="" loading="lazy"></figure>
+<p><font size=3>3、这盒子有点紧，比较难开，打开后，上面是说明书；</p>
+<figure data-type="image" tabindex="3"><img src="https://s3.xuejian.site/2020/11/20201129203304.png" alt="" loading="lazy"></figure>
+<p><font size=3>4、既然不是正品，说明书我就不看了，直接去掉说明书，可以看到耳机盒；</p>
+<figure data-type="image" tabindex="4"><img src="https://s3.xuejian.site/2020/11/20201129203921.png" alt="" loading="lazy"></figure>
+<p><font size=3>5、拿开耳机盒和塑料，最下方是数据线，不知道有没有mfi，没设备可以测试，哈哈；</p>
+<figure data-type="image" tabindex="5"><img src="https://s3.xuejian.site/2020/11/20201129204112.png" alt="" loading="lazy"></figure>
+<p><strong><font size=4>使用</strong></p>
+<p><font size=3>1、打开后，直接弹出窗口，点击“连接”进行下一步；</p>
+<figure data-type="image" tabindex="6"><img src="https://s3.xuejian.site/2020/11/20201129204422.png" alt="" loading="lazy"></figure>
+<p><font size=3>2、根据提示，按住耳机仓后面的按钮；</p>
+<figure data-type="image" tabindex="7"><img src="https://s3.xuejian.site/2020/11/20201129204604.png" alt="" loading="lazy"></figure>
+<p><font size=3>3、配对成功后，进行嘿Siri相关设置；</p>
+<figure data-type="image" tabindex="8"><img src="https://s3.xuejian.site/2020/11/20201129204841.png" alt="" loading="lazy"></figure>
+<p><font size=3>4、设置完成后，iCloud会自动完成相关设置，并在界面上弹出；</p>
+<figure data-type="image" tabindex="9"><img src="https://s3.xuejian.site/2020/11/20201129205039.png" alt="" loading="lazy"></figure>
+<p><font size=3>5、负一屏上会有相关实时显示；</p>
+<figure data-type="image" tabindex="10"><img src="https://s3.xuejian.site/2020/11/20201129205158.png" alt="" loading="lazy"></figure>
+<p><font size=3>6、耳机放回后，再次弹开耳机仓，会有相关弹窗提示；</p>
+<figure data-type="image" tabindex="11"><img src="https://s3.xuejian.site/2020/11/20201129205640.png" alt="" loading="lazy"></figure>
+<p><font size=3>7、设置中，可以更改名称及各类选项；</p>
+<figure data-type="image" tabindex="12"><img src="https://s3.xuejian.site/2020/11/20201129205753.png" alt="" loading="lazy"></figure>
+<hr>
+<p><font size=3>从使用和续航上来看，和正品没有太大的差异；至于音质，这个是因人而异的，目前没有遇到明显的如破音等问题。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[centos7 安装Saltstack]]></title>
         <id>https://blog.xuejian.site/post/centos7-an-zhuang-saltstack/</id>
@@ -1551,57 +1588,6 @@ vi picture.conf
 <figure data-type="image" tabindex="13"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531172659.png" alt="" loading="lazy"></figure>
 <p><font size=3>3、完成后，可以在上传区上传图片试试，默认链接为markdown链接，可以工具自己的需求进行更改。</p>
 <figure data-type="image" tabindex="14"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531172730.png" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sniproxy安装使用]]></title>
-        <id>https://blog.xuejian.site/post/sniproxy-an-zhuang-shi-yong/</id>
-        <link href="https://blog.xuejian.site/post/sniproxy-an-zhuang-shi-yong/">
-        </link>
-        <updated>2019-06-18T15:15:46.000Z</updated>
-        <content type="html"><![CDATA[<p><font size=3>1、购买Ubuntu服务器，要求Ubuntu 16.04及以上，待服务器开启后，执行以下命令关闭服务器防火墙和临时关闭selinux</p>
-<pre><code class="language-shell">ufw disable
-setenforce 0
-</code></pre>
-<p><font size=3>2、执行以下操作，彻底关闭selinux，防止重启后selinux再次启动</p>
-<pre><code class="language-shell">修改/etc/selinux/config 文件
-将SELINUX=enforcing改为SELINUX=disabled
-</code></pre>
-<p><font size=3>3、安装依赖</p>
-<pre><code class="language-shell">sudo apt-get install autotools-dev cdbs debhelper dh-autoreconf dpkg-dev gettext libev-dev libpcre3-dev libudns-dev pkg-config fakeroot devscripts
-</code></pre>
-<p><font size=3>4、安装git软件</p>
-<pre><code class="language-shell">sudo apt-get install git
-</code></pre>
-<p><font size=3>5、从github上获取sniproxy</p>
-<pre><code class="language-shell">git clone https://github.com/dlundquist/sniproxy.git
-</code></pre>
-<p><font size=3>6、先进入sniproxy，然后执行第二步</p>
-<pre><code class="language-shell">cd sniproxy
-./autogen.sh &amp;&amp; ./configure &amp;&amp; make check &amp;&amp; sudo make install
-</code></pre>
-<p><font size=3>备份/etc/sniproxy.conf，然后vi /etc/sniproxy.conf，输入以下内容</p>
-<pre><code class="language-shell">user nobody
-resolver {
-mode ipv4_only}  //如果服务器只有ipv4地址一定要这个选项，不然会概率性SSL错误或503
-listen 80 {
-proto http
-table http_hosts
-}
-table http_hosts {
-.* *:80
-}
-listen 0.0.0.0:443 {
-proto tls
-table https_hosts
-}
-table https_hosts {
-.* *:443
-}
-</code></pre>
-<p><font size=3>6、用以下命令启动sniproxy</p>
-<pre><code class="language-shell">sniproxy -c /etc/sniproxy.conf
-</code></pre>
 ]]></content>
     </entry>
 </feed>
