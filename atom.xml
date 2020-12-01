@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xuejian.site</id>
     <title>随笔</title>
-    <updated>2020-11-30T00:47:42.455Z</updated>
+    <updated>2020-12-01T07:30:30.850Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xuejian.site"/>
     <link rel="self" href="https://blog.xuejian.site/atom.xml"/>
@@ -10,6 +10,29 @@
     <logo>https://blog.xuejian.site/images/avatar.png</logo>
     <icon>https://blog.xuejian.site/favicon.ico</icon>
     <rights>All rights reserved 2020, 随笔</rights>
+    <entry>
+        <title type="html"><![CDATA[IOS14下设置白名单上网]]></title>
+        <id>https://blog.xuejian.site/post/ios14-xia-she-zhi-bai-ming-dan-shang-wang/</id>
+        <link href="https://blog.xuejian.site/post/ios14-xia-she-zhi-bai-ming-dan-shang-wang/">
+        </link>
+        <updated>2020-12-01T07:27:35.000Z</updated>
+        <content type="html"><![CDATA[<p><font size=3>背景：由于iOS 14默认在不同的wifi上使用不同的mac地址，导致我们加入的mac白名单失效；为了避免这个问题，在需要使用mac白名单的wifi热点上，可以进行以下设置来使用真实mac，来达到mac白名单的效果。</p>
+<p><font size=3>1、点击iPhone上的如图所示的设置，进入设置界面；</p>
+<figure data-type="image" tabindex="1"><img src="https://s3.xuejian.site/2020/11/20201110181714.jpg" alt="" loading="lazy"></figure>
+<p><font size=3>2、在设置界面，进入截图红框标注的无线局域网；</p>
+<figure data-type="image" tabindex="2"><img src="https://s3.xuejian.site/2020/11/20201110182559.png" alt="" loading="lazy"></figure>
+<p><font size=3>3、找到场所的wifi，以本次为例，我们的场所的wifi为“天蚕”，点击wifi名字后面红框标注的图标；</p>
+<figure data-type="image" tabindex="3"><img src="https://s3.xuejian.site/2020/11/20201110182841.png" alt="" loading="lazy"></figure>
+<p><font size=3>4、进入后，将红框标注的“私有地址”选项关闭；</p>
+<figure data-type="image" tabindex="4"><img src="https://s3.xuejian.site/2020/11/20201110183059.png" alt="" loading="lazy"></figure>
+<p><font size=3>5、退回设置界面，找到红框标注的“通用”，点击进入；</p>
+<figure data-type="image" tabindex="5"><img src="https://s3.xuejian.site/2020/11/20201110183220.png" alt="" loading="lazy"></figure>
+<p><font size=3>6、进入红框标注的“关于本机”；</p>
+<figure data-type="image" tabindex="6"><img src="https://s3.xuejian.site/2020/11/20201110183409.png" alt="" loading="lazy"></figure>
+<p><font size=3>7、将红框标注的无线局域网地址加入白名单，即可完成操作。</p>
+<figure data-type="image" tabindex="7"><img src="https://s3.xuejian.site/2020/11/20201110183736.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[华强北版二代AirPods分享]]></title>
         <id>https://blog.xuejian.site/post/hua-qiang-bei-ban-er-dai-airpods-fen-xiang/</id>
@@ -1507,89 +1530,6 @@ chmod 600 /usr/xj/.passwd-s3fs
 <figure data-type="image" tabindex="5"><img src="https://s3.xuejian.site/2020/11/f1d57432d3a3f8e04cdb17dfd8f7985.png" alt="" loading="lazy"></figure>
 <p><font size=3>4、点击红框标注的“开启托管”，完成操作。</p>
 <figure data-type="image" tabindex="6"><img src="https://s3.xuejian.site/2020/11/20201110091537.jpg" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[自建低成本大流量图床]]></title>
-        <id>https://blog.xuejian.site/post/zi-jian-di-cheng-ben-da-liu-liang-tu-chuang/</id>
-        <link href="https://blog.xuejian.site/post/zi-jian-di-cheng-ben-da-liu-liang-tu-chuang/">
-        </link>
-        <updated>2019-06-19T08:49:47.000Z</updated>
-        <content type="html"><![CDATA[<p><font size=4>一、建立阿里云香港区OSS Bucket</p>
-<p><font size=3>1、建立阿里云香港区的OSS Bucket，注意点是红框标注的两处，区域选择香港，读写权限选择公共读；</p>
-<figure data-type="image" tabindex="1"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531155034.png" alt="" loading="lazy"></figure>
-<p><font size=3>2、记录红框标注的地址，后续备用；</p>
-<figure data-type="image" tabindex="2"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531155834.png" alt="" loading="lazy"></figure>
-<p><font size=4>二、购买阿里云香港区域轻量服务器并安装nginx</p>
-<p><font size=3>1、购买阿里云香港区轻量服务器，注意区域选择香港，预装使用宝塔（因为这个不会预装任何web服务器），使用量不高选择默认的套餐即可，然后一路点击完成付款即可；</p>
-<figure data-type="image" tabindex="3"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531160615.png" alt="" loading="lazy"></figure>
-<p><font size=3>2、完全付款后，可以在服务器界面看到购买的服务器，待状态完成后点击红框标注的图标，启动远程连接;</p>
-<figure data-type="image" tabindex="4"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531161505.png" alt="" loading="lazy"></figure>
-<p><font size=3>3、在跳出的界面输入命令:suo -s，进入root用户；</p>
-<p><font size=3>4、打开nginx的淘宝网开源版Tengine的下载页面，选择最新版本：<a href="http://tengine.taobao.org/download_cn.html" title="Tengine下载页面">Tengine下载页面</a> ，右击选择红框标注的“复制链接地址”</p>
-<figure data-type="image" tabindex="5"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531162725.jpg" alt="" loading="lazy"></figure>
-<p><font size=3>5、在web界面执行以下命令</p>
-<pre><code class="language-shell">wget http://tengine.taobao.org/download/tengine-2.3.0.tar.gz
-tar -zxvf tengine-2.3.0.tar.gz
-cd tengine-2.3.0
-./configure
-make
-make install
-</code></pre>
-<p><font size=3>6、使用命令打开nginx的配置文件</p>
-<pre><code class="language-shell">vi /usr/local/nginx/conf/nginx.conf
-</code></pre>
-<p><font size=3>在如图下方输入红框标注的信息：include vhost/*.conf;</p>
-<figure data-type="image" tabindex="6"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531164458.png" alt="" loading="lazy"></figure>
-<p><font size=3>7、使用以下命令建立文件夹和配置文件：</p>
-<pre><code class="language-shell">mkdir /usr/local/nginx/conf/vhost
-cd /usr/local/nginx/conf/vhost
-vi picture.conf
-</code></pre>
-<p><font size=3>8、picture.conf的模版，请注意按照注释内容更改</p>
-<pre><code class="language-shell">server
- {
- listen 80;
- listen 443 ssl;
- ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
- ssl_certificate /etc/nginx/ssl/xxx.pem; //需要申请HTTPS证书后，根据证书名字提供
- ssl_certificate_key /etc/nginx/ssl/xxx.key;
-    server_name picture.xxx.com;  //这里填写域名
-    location / {
-	    client_max_body_size 100m;
-        #proxy_set_header Host $host;
-        #proxy_set_header X-Real-IP $remote_addr;
-        #proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_pass https://xxx.oss-cn-hongkong-internal.aliyuncs.com; 
-		//这里的url填写第一部分记录下来的OSS内网地址
-    }
-    #access_log logs/note.log;
-    access_log /dev/null;
-}
-
-</code></pre>
-<p><font size=3>9、使用以下命令启动nginx</p>
-<pre><code class="language-shell">/usr/local/nginx/sbin/nginx
-</code></pre>
-<p><font size=4>三、设置阿里云子账户</p>
-<p><font size=3>1、点击搜索阿里云的“访问控制”，进入子账户设置</p>
-<figure data-type="image" tabindex="7"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531170302.png" alt="" loading="lazy"></figure>
-<p><font size=3>2、按图示步骤点击，进入添加用户环节</p>
-<figure data-type="image" tabindex="8"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531170626.png" alt="" loading="lazy"></figure>
-<p><font size=3>3、这个界面输入想用的用户名，然后只勾选红框标注“编程访问”</p>
-<figure data-type="image" tabindex="9"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531170905.png" alt="" loading="lazy"></figure>
-<p><font size=3>4、记录该页面的各类用户信息，下载红框标注的文件并保存csv备用，完成后点击后退</p>
-<figure data-type="image" tabindex="10"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531171141.png" alt="" loading="lazy"></figure>
-<p><font size=3>5、在该界面点击刚刚创建的用户，进入用户权限设置；</p>
-<figure data-type="image" tabindex="11"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531171518.png" alt="" loading="lazy"></figure>
-<p><font size=3>6、搜索“AliyunOSSFullAccess”，点击唯一选项添加后点击确认，效果如下图：</p>
-<figure data-type="image" tabindex="12"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531171735.png" alt="" loading="lazy"></figure>
-<p><font size=4>四、设置上传工具</p>
-<p><font size=3>1、下载上传工具PicGo，下载地址：<a href="https://github.com/Molunerfinn/PicGo/releases" title="PicGo下载界面">PicGo下载界面</a></p>
-<p><font size=3>2、按图示的步骤打开阿里云OSS设置，并按第三部分记录的子账户信息填入，自定义域名设置为第二部分nginx上写入的域名，最后点击确认并点击设置为默认图床</p>
-<figure data-type="image" tabindex="13"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531172659.png" alt="" loading="lazy"></figure>
-<p><font size=3>3、完成后，可以在上传区上传图片试试，默认链接为markdown链接，可以工具自己的需求进行更改。</p>
-<figure data-type="image" tabindex="14"><img src="https://wz-1255445901.file.myqcloud.com/2019/05/20190531172730.png" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>
